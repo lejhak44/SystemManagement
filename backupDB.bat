@@ -1,0 +1,9 @@
+mssql-scripter -S  . -d SystemManagement -U backup -P sql123 -f .\database\ --display-progress --file-per-object --exclude-headers --exclude-use-database
+
+
+
+@REM mssql-scripter -S dentaltool.database.windows.net -d DentalTool -U dev -f C:\Users\Jefrey\Desktop\Projects\ngJSApp\ui\database\DentalAppDB.sql --display-progress --exclude-headers
+
+@mssql-scripter -S dentaltool.database.windows.net -d DentalTool -U dev --schema-and-data --exclude-use-database --exclude-headers -f C:\Users\Jefrey\Desktop\Projects\ngJSApp\ui\database\ --file-per-object --display-progress --exclude-objects dbo._tColumnAlignment dbo._tControlType dbo._tDetailView dbo._tDetailView_Detail dbo._tDetailView_Detail_Link dbo._tLabelLocation dbo._tListView dbo._tListView_Detail dbo._tModel dbo._tModel_Property dbo._tNavigation dbo._tPropertyType dbo._tSummaryType dbo._tView dbo._tViewType _vDetailView _vDetailView_Detail _vGenerateTSClass _vListView _vListView_Detail _vModel _vModel_Property _vModelGetProcedures _vModelPropertiesCrud _vModelProperyDetail _vModelViews _vSetting _vUserDefinedTypes __vNavigation
+@REM @mssql-scripter -S  .\SQLEXPRESS -d DenToolDB -U sa -P abc123 --schema-and-data --exclude-headers --exclude-use-database -f .\database\SystemTables\ --file-per-object --display-progress --include-objects dbo._tColumnAlignment dbo._tControlType dbo._tDetailView dbo._tDetailView_Detail dbo._tDetailView_Detail_Link dbo._tLabelLocation dbo._tListView dbo._tListView_Detail dbo._tModel dbo._tModel_Property dbo._tNavigation dbo._tPropertyType dbo._tSummaryType dbo._tView dbo._tViewType _vDetailView _vDetailView_Detail _vGenerateTSClass _vListView _vListView_Detail _vModel _vModel_Property _vModelGetProcedures _vModelPropertiesCrud _vModelProperyDetail _vModelViews _vSetting _vUserDefinedTypes __vNavigation 
+@pause

@@ -1,0 +1,48 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Name_Item",
+			"caption": "Item",
+			"dataType": "string",
+		
+		},
+		{
+			"name": "UnitCost",
+			"caption": "Buying Price",
+			"dataType": "string"
+		},
+		{
+			"name": "UnitPrice",
+			"caption": "Selling Price",
+			"dataType": ""
+		},
+		{
+			"name": "TotalQuantity",
+			"caption": "Quantity",
+			"dataType": ""
+		},
+		{
+			"name": "Name_InventoryStatus",
+			"caption": "Status",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Name_Item"
+}

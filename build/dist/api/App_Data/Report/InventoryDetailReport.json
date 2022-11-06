@@ -1,0 +1,60 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Name_Item",
+			"caption": "Item",
+			"dataType": "string",
+		
+		},		
+		{
+			"name": "Name_InventoryStatus",
+			"caption": "Inventory Status",
+			"dataType": "string",
+		
+		},
+		{
+			"name": "Code",
+			"caption": "Document #",
+			"dataType": "string"
+		},
+		{
+			"name": "Date",
+			"caption": "",
+			"dataType": "",
+			"format": "YYYY-MM-DD"
+		},
+		{
+			"name": "Name_FilingStatus",
+			"caption": "Status",
+			"dataType": ""
+		},
+		{
+			"name": "Comment",
+			"caption": "Note",
+			"dataType": ""
+		},
+		{
+			"name": "Quantity",
+			"caption": "",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Name_Item, Date"
+}

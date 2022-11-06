@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="05/01/2021 04:00:04" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJzrHVFfg2y3ysyAp05IPgF5">
+      <TableDataSource Name="vzEuthanasiaAuthorization" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzEuthanasiaAuthorization">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="1030.05" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TableObject Name="Table1" Top="56.7" Width="756.24" Height="811.89">
+        <TableColumn Name="Column1" Width="126.04"/>
+        <TableColumn Name="Column2" Width="126.04"/>
+        <TableColumn Name="Column3" Width="126.04"/>
+        <TableColumn Name="Column4" Width="126.04"/>
+        <TableColumn Name="Column5" Width="126.04"/>
+        <TableColumn Name="Column6" Width="126.04"/>
+        <TableRow Name="Row1" Height="31.83">
+          <TableCell Name="Cell1" Border.Lines="All" Text="Veterinary Business Name: [ds.Name_Company]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell2" Font="Arial, 10pt"/>
+          <TableCell Name="Cell3" Font="Arial, 10pt"/>
+          <TableCell Name="Cell4" Font="Arial, 10pt"/>
+          <TableCell Name="Cell5" Font="Arial, 10pt"/>
+          <TableCell Name="Cell26" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="31.83">
+          <TableCell Name="Cell6" Border.Lines="All" Text="Address: [ds.Address_Company]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell7" Font="Arial, 10pt"/>
+          <TableCell Name="Cell8" Font="Arial, 10pt"/>
+          <TableCell Name="Cell9" Font="Arial, 10pt"/>
+          <TableCell Name="Cell10" Font="Arial, 10pt"/>
+          <TableCell Name="Cell27" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="31.83">
+          <TableCell Name="Cell11" Border.Lines="All" Text="Date: [Date]" Format="Date" Format.Format="d" Font="Arial, 10pt" ColSpan="3"/>
+          <TableCell Name="Cell12" Font="Arial, 10pt"/>
+          <TableCell Name="Cell13" Font="Arial, 10pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Case/Client number:" Font="Arial, 10pt" ColSpan="3"/>
+          <TableCell Name="Cell15" Font="Arial, 10pt"/>
+          <TableCell Name="Cell28" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="31.83">
+          <TableCell Name="Cell16" Border.Lines="All" Text="Owner’s Name: [ds.Name_Client]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell17" Font="Arial, 10pt"/>
+          <TableCell Name="Cell18" Font="Arial, 10pt"/>
+          <TableCell Name="Cell19" Font="Arial, 10pt"/>
+          <TableCell Name="Cell20" Font="Arial, 10pt"/>
+          <TableCell Name="Cell29" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="31.83">
+          <TableCell Name="Cell21" Border.Lines="All" Text="Owner’s Address: [ds.Address_Client]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell22" Font="Arial, 10pt"/>
+          <TableCell Name="Cell23" Font="Arial, 10pt"/>
+          <TableCell Name="Cell24" Font="Arial, 10pt"/>
+          <TableCell Name="Cell25" Font="Arial, 10pt"/>
+          <TableCell Name="Cell30" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="31.83">
+          <TableCell Name="Cell31" Border.Lines="All" Text="Owner’s Contact Number: [ds.ContactNumber_Client] [ds.ContactNumber2_Client]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell32" Font="Arial, 10pt"/>
+          <TableCell Name="Cell33" Font="Arial, 10pt"/>
+          <TableCell Name="Cell34" Font="Arial, 10pt"/>
+          <TableCell Name="Cell35" Font="Arial, 10pt"/>
+          <TableCell Name="Cell36" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="31.83">
+          <TableCell Name="Cell37" Border.Lines="All" Text="Patient’s Name: [ds.Name_Patient]" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell38" Font="Arial, 10pt"/>
+          <TableCell Name="Cell39" Border.Lines="All" Text="Microchip number:" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell40" Font="Arial, 10pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="Age: [ds.Age_Patient]" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell42" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="31.83">
+          <TableCell Name="Cell43" Border.Lines="All" Text="Species/Breed: [ds.Name_Species]" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell44" Font="Arial, 10pt"/>
+          <TableCell Name="Cell45" Font="Arial, 10pt"/>
+          <TableCell Name="Cell46" Font="Arial, 10pt"/>
+          <TableCell Name="Cell47" Font="Arial, 10pt"/>
+          <TableCell Name="Cell48" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="31.83">
+          <TableCell Name="Cell49" Border.Lines="All" Text="Sex: [ds.Name_Gender]" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell50" Font="Arial, 10pt"/>
+          <TableCell Name="Cell51" Border.Lines="All" Text="Weight:" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell52" Font="Arial, 10pt"/>
+          <TableCell Name="Cell53" Border.Lines="All" Text="Color:" Font="Arial, 10pt" ColSpan="2"/>
+          <TableCell Name="Cell54" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="94.5">
+          <TableCell Name="Cell55" Border.Lines="All" Text="I certify that I am the legal (check one) owner duly authorized agent for the owner of the animal described above, and do hereby give Dr.__________________________________ the_______________________________ ([ds.Name_Company]) and authorized agents, staff, or representatives full and complete authority to euthanatize and dispose or arrange for cremation of said animal in a humane manner." HorzAlign="Justify" VertAlign="Center" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell56" Font="Arial, 10pt"/>
+          <TableCell Name="Cell57" Font="Arial, 10pt"/>
+          <TableCell Name="Cell58" Font="Arial, 10pt"/>
+          <TableCell Name="Cell59" Font="Arial, 10pt"/>
+          <TableCell Name="Cell60" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row11" Height="75.6">
+          <TableCell Name="Cell61" Border.Lines="All" Text="I hereby forever release Dr.____________________________________________ of the ([ds.Name_Company]) and any authorized agents, staff, or representatives from any and all liability for euthanasia and disposing of said animal. " HorzAlign="Justify" VertAlign="Center" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell62" Font="Arial, 10pt"/>
+          <TableCell Name="Cell63" Font="Arial, 10pt"/>
+          <TableCell Name="Cell64" Font="Arial, 10pt"/>
+          <TableCell Name="Cell65" Font="Arial, 10pt"/>
+          <TableCell Name="Cell66" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Height="170.1">
+          <TableCell Name="Cell67" Border.Lines="All" Text="State law requires post euthanasia rabies testing of any animal who has bitten people/other animal or been exposed to rabies virus in the last ____ days. &#13;&#10;&#13;&#10;&#10;I do also certify to be best of my knowledge the said animal has not bitten any person or animal during the last ____ days and has not been exposed to rabies virus. &#13;&#10;&#13;&#10;&#10;Said animal has bitten a person or animal or been exposed to rabies virus in the last ____ days. I understand the said animal must be tested for rabies virus after euthanasia. Remain cannot be returned after rabies testing. Ashes may be returned if specified below. " HorzAlign="Justify" VertAlign="Center" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell68" Font="Arial, 10pt"/>
+          <TableCell Name="Cell69" Font="Arial, 10pt"/>
+          <TableCell Name="Cell70" Font="Arial, 10pt"/>
+          <TableCell Name="Cell71" Font="Arial, 10pt"/>
+          <TableCell Name="Cell72" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="94.5">
+          <TableCell Name="Cell73" Border.Lines="All" Text="I request that this animal’s remains be cared for in the following manner:&#13;&#10;       Private Cremation with return of ashes.&#13;&#10;       Cremation with no return of ashes. My Pet’s remain will not be return to me.&#13;&#10;       Home burial. I wish to take my pet’s body home.&#13;&#10;       I further authorize the attending veterinarian to dispose of remains in accordance to hospital policy.  " HorzAlign="Justify" VertAlign="Center" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell74" Font="Arial, 10pt"/>
+          <TableCell Name="Cell75" Font="Arial, 10pt"/>
+          <TableCell Name="Cell76" Font="Arial, 10pt"/>
+          <TableCell Name="Cell77" Font="Arial, 10pt"/>
+          <TableCell Name="Cell78" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row14" Height="71.82">
+          <TableCell Name="Cell79" Border.Lines="All" Text="My preference concerning necropsy (autopsy) is:&#13;&#10;       I decline the option of necropsy.&#13;&#10;       I authorize a necropsy. I understand it may not be possible to have the remains returned to me." HorzAlign="Justify" VertAlign="Center" Font="Arial, 10pt" ColSpan="6"/>
+          <TableCell Name="Cell80" Font="Arial, 10pt"/>
+          <TableCell Name="Cell81" Font="Arial, 10pt"/>
+          <TableCell Name="Cell82" Font="Arial, 10pt"/>
+          <TableCell Name="Cell83" Font="Arial, 10pt"/>
+          <TableCell Name="Cell84" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row15">
+          <TableCell Name="Cell85" Font="Arial, 10pt" ColSpan="6">
+            <TextObject Name="Text1" Top="9.45" Width="746.55" Height="47.25" Text="I have read and understand this authorization. To the best of my knowledge, the information I have provided is true. I understand that my wishes may be carried out immediately upon my signing this agreement. Fees for these services have been explained to me." Font="Arial, 10pt"/>
+            <ShapeObject Name="Shape1" Width="757.13" Height="179.55"/>
+          </TableCell>
+          <TableCell Name="Cell86" Font="Arial, 10pt"/>
+          <TableCell Name="Cell87" Font="Arial, 10pt"/>
+          <TableCell Name="Cell88" Font="Arial, 10pt"/>
+          <TableCell Name="Cell89" Font="Arial, 10pt"/>
+          <TableCell Name="Cell90" Font="Arial, 10pt"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text2" Left="9.45" Top="916.65" Width="179.55" Height="18.9" Text="Owner  / Agent’s Signature:" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text3" Left="189" Top="916.65" Width="311.85" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="538.65" Top="916.65" Width="47.25" Height="18.9" Text="Date:" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="585.9" Top="916.65" Width="132.3" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Left="9.45" Top="935.55" Width="255.15" Height="18.9" Text="Verbal  / Phone released granted by/to: " VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Left="264.6" Top="935.55" Width="236.25" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="538.65" Top="935.55" Width="47.25" Height="18.9" Text="Date:" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="585.9" Top="935.55" Width="132.3" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Left="283.5" Top="954.45" Width="189" Height="18.9" Text="Agent/Clinician" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text15" Top="18.9" Width="756" Height="18.9" Text="EUTHANASIA AUTHORIZATION" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text11" Left="9.45" Top="982.8" Width="132.3" Height="18.9" Text="Witness Signature:" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Left="141.75" Top="982.8" Width="359.1" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="538.65" Top="982.8" Width="47.25" Height="18.9" Text="Date:" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <TextObject Name="Text14" Left="585.9" Top="982.8" Width="132.3" Height="18.9" Border.Lines="Bottom" VertAlign="Bottom" Font="Arial, 10pt"/>
+      <DataBand Name="Data1" Top="1034.05" Width="756" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzEuthanasiaAuthorization"/>
+      <GroupFooterBand Name="GroupFooter1" Top="1038.05" Width="756" PrintOnBottom="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="1042.05" Width="756"/>
+  </ReportPage>
+</Report>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/27/2022 14:30:09" ReportInfo.CreatorVersion="2022.1.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJz4KS2Nm4Xa3rVoR7wqN18A">
+      <TableDataSource Name="vzAgreementForConfinement" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzAgreementForConfinement">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="718.2" Height="935.55" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text1" Left="63.75" Top="132.3" Width="607.2" Height="18.9" Text="AGREEMENT FOR CONFINEMENT" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="66.15" Top="56.7" Width="157.8" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Center_Center"/>
+      <TextObject Name="Text111" Left="207.9" Top="75.6" Width="330.75" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="132.3" Top="94.5" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Center" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text140" Top="236.25" Width="708.75" Height="359.1" CanGrow="true" Text="I am the legal owner and the person in lawful custody of the animal stated above and warrant that I have full power &#13;&#10;of disposition and to contract in regards of the said animal&#13;&#10;&#13;&#10;I hereby agree to have my pet treated and/or confined in [ds.Name_Company] subject to the following conditions:&#10;&#13;&#10;&#13;&#10;    1. The animal must be visited regularly only during ______________________________.&#13;&#10;&#13;&#10;    2. I authorize the clinic staff to perform surgery on my pet in case this is necessary. &#13;&#10;&#13;&#10;    3. A minimum deposit of ₱ ______________ for every small animal and  ₱ _______________ for every animal weighing more than 15 kilograms brought in for confinement and treatment is required. Account must be settled as promptly as possible in order not to delay the treatment. &#13;&#10;&#13;&#10;    4. Prescribed drugs, sera, vaccines, and supplies should be procured as soon as possible in order not to delay the treatment.&#13;&#10;&#13;&#10;    5. The veterinarian in charge is not responsible for loss and / or accidents beyond the control during confinement.&#13;&#10;&#13;&#10;    6. In case of death, unless otherwise specified, necropsy will be performed immediately on the pet to verify the exact cause of death. &#13;&#10;&#13;&#10;    7. When the animal is ready to be discharged, the owner will be notified accordingly, 5 days grace period is hereby given to the owner to claim his/her pet from the day of notice. Otherwise, the animal clinic has the authority to dispose the animal and cannot be claimed further. Abandonment does not release me of my obligation bill.&#13;&#10;&#13;&#10;&#13;&#10;I agree to assume financial responsibility for payment of chargesincurred to be paid in full at the time of discharge.&#13;&#10;Failure to pay upon demand, the clinic will initiate legal actions for collection of the fees. I am executing and &#13;&#10;signing this agreement to attest to the truth of the foregoing facts for whatever legal purpose it may serve.&#13;" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text175" Top="642.6" Width="340.2" Height="18.9" CanGrow="true" Text="Signature of Owner over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text176" Top="623.7" Width="340.2" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Client]" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text177" Top="727.65" Width="340.2" Height="18.9" CanGrow="true" Text="Signature of Witness over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text178" Top="708.75" Width="340.2" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text179" Left="378" Top="642.6" Width="340.2" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text180" Left="378" Top="623.7" Width="340.2" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text181" Left="378" Top="727.65" Width="340.2" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text182" Left="378" Top="708.75" Width="340.2" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text184" Left="-122.85" Top="179.55" Width="340.2" Height="18.9" CanGrow="true" Text="OWNER'S NAME:" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text185" Left="-151.2" Top="198.45" Width="340.2" Height="18.9" CanGrow="true" Text="DATE:" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text186" Left="-122.85" Top="160.65" Width="340.2" Height="18.9" CanGrow="true" Text="PATIENT NAME: " HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text187" Left="113.4" Top="160.65" Width="189" Height="18.9" Text="[ds.Name_Patient]" Font="Arial, 10pt"/>
+      <TextObject Name="Text188" Left="113.4" Top="179.55" Width="189" Height="28.35" Text="[ds.Name_Client]" Font="Arial, 10pt"/>
+      <DataBand Name="Data1" Top="940.88" Width="718.2" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzAgreementForConfinement"/>
+      <GroupFooterBand Name="GroupFooter1" Top="946.22" Width="718.2" PrintOnBottom="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="951.55" Width="718.2" Height="19.2"/>
+  </ReportPage>
+</Report>

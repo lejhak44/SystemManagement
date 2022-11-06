@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="07/13/2021 11:23:46" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJw+JhJuAMSNVrbTx0W2R5PV">
+      <TableDataSource Name="vzClientDepositReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzClientDepositReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="CreatedBy" DataType="System.String"/>
+        <Column Name="ApprovedBy_Name_User" DataType="System.String"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="DepositAmount" DataType="System.Decimal"/>
+        <Column Name="Code_Patient_Confinement" DataType="System.String"/>
+        <Column Name="FormattedDepositAmount" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="235.05" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text2" Top="85.05" Width="85.05" Height="18.9" Text="DEPOSIT #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="85.05" Top="85.05" Width="179.55" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Left="18.9" Top="103.95" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="85.05" Top="103.95" Width="179.55" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text1" Left="394.5" Width="361.5" Height="28.35" Text="DEPOSIT" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <PictureObject Name="Picture1" Width="252.3" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text32" Left="359.1" Top="85.05" Width="122.85" Height="18.9" Text="Owner:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="481.95" Top="85.05" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Client]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text101" Left="359.1" Top="103.95" Width="122.85" Height="18.9" Text="Patient:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text102" Left="481.95" Top="103.95" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Patient]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text111" Left="396.9" Top="28.35" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text110" Left="9.45" Top="151.65" Width="738.15" Height="64.5" CanGrow="true" Text="     Received from &lt;b&gt;[ds.Name_Client]&lt;/b&gt;, the sum of &lt;b&gt;Php [ds.FormattedDepositAmount]&lt;/b&gt; in full / partial payment for &lt;b&gt;[ds.Code_Patient_Confinement]&lt;/b&gt;." Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="255.15" Top="47.25" Width="500.85" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <DataBand Name="Data1" Top="239.01" Width="756" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzClientDepositReport"/>
+      <GroupFooterBand Name="GroupFooter1" Top="242.97" Width="756" Height="55.2" CanGrow="true">
+        <TextObject Name="Text31" Left="407.4" Top="26.4" Width="340.2" Height="18.9" Border.Lines="Top" CanBreak="false" Text="Authorized Signature" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text98" Left="407.4" Top="7.5" Width="340.2" Height="18.9" CanGrow="true" CanBreak="false" HorzAlign="Center" Font="Calibri, 12pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="302.13" Width="756"/>
+  </ReportPage>
+</Report>

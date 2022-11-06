@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/15/2021 11:04:59" ReportInfo.CreatorVersion="2021.1.0.0">
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZzeD29xeaCV4AGxfUC1QOjQ==">
+      <TableDataSource Name="vzPaymentTransactionReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzPaymentTransactionReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="CreatedBy" DataType="System.String"/>
+        <Column Name="ApprovedBy_Name_User" DataType="System.String"/>
+        <Column Name="Code_BillingInvoice" DataType="System.String"/>
+        <Column Name="BillingAddress" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="PayableAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmount" DataType="System.Decimal"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Name_PaymentMethod" DataType="System.String"/>
+        <Column Name="CheckNumber" DataType="System.String"/>
+        <Column Name="RemainingAmount" DataType="System.Decimal"/>
+        <Column Name="ChangeAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmountString" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="p" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GroupHeader1" Width="718.2" Height="415.8" CanBreak="true" StartNewPage="true" Condition="[ds.ID]">
+      <TextObject Name="Text4" Left="340.2" Top="113.4" Width="151.2" Height="18.9" Text="Patient:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="18.9" Top="75.6" Width="47.25" Height="18.9" Text="PT #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="66.15" Top="75.6" Width="189" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text5" Left="491.4" Top="113.4" Width="217.35" Height="37.8" CanGrow="true" Text="[ds.Name_Patient]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Top="94.5" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="94.5" Width="189" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text1" Left="340.2" Width="368.55" Height="28.35" Text="PAYMENT TRANSACTION" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text32" Left="359.1" Top="75.6" Width="132.3" Height="18.9" Text="Billing Invoice #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="491.4" Top="75.6" Width="217.35" Height="18.9" Text="[ds.Code_BillingInvoice]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text34" Left="18.9" Top="170.1" Width="689.85" Height="85.05" CanGrow="true" Text="     Received from &lt;b&gt;[ds.Name_Client]&lt;/b&gt; residing at &lt;b&gt;[ds.BillingAddress]&lt;/b&gt;, the sum of &lt;b&gt;Php [ds.PaymentAmountString]&lt;/b&gt; in full / partial payment for &lt;b&gt;[ds.Code_BillingInvoice]&lt;/b&gt;." Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text35" Left="-9.45" Top="396.9" Width="727.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text36" Left="-47.25" Top="255.15" Width="132.3" Height="18.9" Text="Payable:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text37" Left="85.05" Top="255.15" Width="160.65" Height="18.9" Text="Php [ds.PayableAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+      <TextObject Name="Text38" Left="-47.25" Top="274.05" Width="132.3" Height="18.9" Text="Payment:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text39" Left="85.05" Top="274.05" Width="160.65" Height="18.9" Text="Php [ds.PaymentAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+      <TextObject Name="Text40" Left="472.5" Top="255.15" Width="132.3" Height="18.9" Text="Payment Method" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text41" Left="472.5" Top="274.05" Width="236.25" Height="37.8" CanGrow="true" Text="[ds.Name_PaymentMethod]&lt;br/&gt;[IIf(Length([ds.CheckNumber]) &gt; 0, &quot;(Check #: &quot; + [ds.CheckNumber] + &quot;)&quot;,&quot;&quot;)]       " Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text42" Left="-47.25" Top="292.95" Width="132.3" Height="18.9" Text="Change:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text43" Left="85.05" Top="292.95" Width="160.65" Height="18.9" Text="Php [ds.ChangeAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+      <LineObject Name="Line1" Left="18.9" Top="292.95" Width="226.8" Diagonal="true"/>
+      <TextObject Name="Text44" Left="-47.25" Top="330.75" Width="132.3" Height="18.9" VisibleExpression="[ds.RemainingAmount]&gt;0" Text="Remaining:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text45" Left="85.05" Top="330.75" Width="160.65" Height="18.9" VisibleExpression="[ds.RemainingAmount] &gt; 0" Text="Php [ds.RemainingAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+      <LineObject Name="Line2" Left="472.5" Top="368.55" Width="236.25" Diagonal="true"/>
+      <TextObject Name="Text46" Left="472.5" Top="368.55" Width="236.25" Height="18.9" Text="Authorized Signature" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <PictureObject Name="Picture1" Width="290.1" Height="66" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text47" Left="302.4" Top="28.35" Width="406.35" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text48" Left="340.2" Top="94.5" Width="151.2" Height="18.9" Text="Client:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text49" Left="491.4" Top="94.5" Width="217.35" Height="18.9" CanGrow="true" Text="[ds.Name_Client]" Font="Calibri, 12pt"/>
+      <DataBand Name="Data1" Top="421.13" Width="718.2" Style="Header" EvenStyle="EvenRows" DataSource="vzPaymentTransactionReport"/>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

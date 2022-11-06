@@ -1,0 +1,59 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Name_Client",
+			"caption": "Client",
+			"dataType": "string",
+		
+		},		
+		{
+			"name": "Date",
+			"caption": "",
+			"dataType": "",
+			"format": "YYYY-MM-DD"
+		},
+		{
+			"name": "Code",
+			"caption": "Document #",
+			"dataType": "string"
+		},
+		{
+			"name": "Status",
+			"caption": "Status",
+			"dataType": ""
+		},
+		{
+			"name": "Age",
+			"caption": "Age",
+			"dataType": ""
+		},
+		{
+			"name": "TotalAmount",
+			"caption": "Total Amount",
+			"dataType": ""
+		},
+		{
+			"name": "RemainingAmount",
+			"caption": "Remaining Amount",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Name_Client, Date, Code"
+}

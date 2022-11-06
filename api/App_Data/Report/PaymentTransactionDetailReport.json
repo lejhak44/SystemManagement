@@ -1,0 +1,69 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Code_BillingInvoice",
+			"caption": "BI #",
+			"dataType": "string",
+		
+		},
+		{
+			"name": "Name_Client",
+			"caption": "Client",
+			"dataType": ""
+		},
+		{
+			"name": "Name_Patient",
+			"caption": "Patient",
+			"dataType": ""
+		},
+		{
+			"name": "BalanceAmount",
+			"caption": "Balance",
+			"dataType": ""
+		},
+		{
+			"name": "Code_PaymentTransaction",
+			"caption": "PT#",
+			"dataType": ""
+		},
+		{
+			"name": "Date_PaymentTransaction",
+			"caption": "Paid Date",
+			"dataType": "",
+			"format": "YYYY-MM-DD"
+		},
+		{
+			"name": "Name_PaymentMethod",
+			"caption": "Method",
+			"dataType": ""
+		},
+		{
+			"name": "PaymentAmount",
+			"caption": "Payment Amount",
+			"dataType": ""
+		},
+		{
+			"name": "RemainingAmount",
+			"caption": "Remaining Amount",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Date_BillingInvoice, Code_BillingInvoice, Name_Client, Name_Patient"
+}

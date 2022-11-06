@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/27/2022 14:26:16" ReportInfo.CreatorVersion="2022.1.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJxmLCMbobLy9nVwgCAGR/Bx">
+      <TableDataSource Name="vzAdmissionReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzAdmissionReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="935.55" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text1" Left="63.75" Top="132.3" Width="607.2" Height="18.9" Text="ADMISSION FORM" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="37.8" Top="56.7" Width="157.8" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Center_Center"/>
+      <TextObject Name="Text111" Left="207.9" Top="75.6" Width="330.75" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Center" Font="Arial, 10pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="132.3" Top="94.5" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text119" Top="245.7" Width="122.85" Height="18.9" CanGrow="true" Text="Owner’s Name:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text134" Top="264.6" Width="122.85" Height="18.9" CanGrow="true" Text="Contact Number:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text135" Top="283.5" Width="122.85" Height="18.9" CanGrow="true" Text="Amount Deposited:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text140" Top="510.3" Width="746.55" Height="274.05" CanGrow="true" Text="I, owner/representative of the above-mentioned pet, hereby authorize [ds.Name_Company] and its staff to do the above procedure that is deemed necessary for the health, safety, and well-being of my pet under their care and supervision. &#13;&#10;&#13;&#10;&#13;&#10;I certify that no guarantee or assurance has been made as to result that may be obtained and the clinic and its employees will not be legally liable for any consequences directly or indirectly related to all services provided nor be responsible for untoward events that may occur consequently.&#13;&#10;&#13;&#10;&#13;&#10;If my pet injured himself in an attempt to escape in grooming procedures, become ill during clinic stay or will not make it on surgeries, I will not hold responsible and liable for those unfortunate events. I understand that the clinic’s main concern is for the benefit and welfare of my pet.&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;Further, I assume financial responsibility for all the changes incurred. My pet is considered abandoned if I failed to take him/her back within 7 days’ notice of discharge. Provided thereof my full consent in disposing my pet upon the clinic discretion, but still not release me from any financial obligations. Failure to pay upon demand, the clinic will initiate legal actions for collection of the fees. &#13;&#10;&#13;&#10; By signing below, I affirms that I am the legal owner and the person in lawful custody of pet stated above and warrant to have full power of disposition and to contract in regards of the said animal.&#13;" HorzAlign="Justify" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text141" Left="122.85" Top="245.7" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Client]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text142" Left="122.85" Top="264.6" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.ContactNumber_Client] [ds.ContactNumber2_Client]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text143" Left="122.85" Top="283.5" Width="198.45" Height="18.9" Border.Lines="Bottom" CanGrow="true" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text144" Left="359.1" Top="245.7" Width="103.95" Height="18.9" CanGrow="true" Text="Pet’s Name:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text145" Left="463.05" Top="245.7" Width="198.45" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Patient]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text146" Left="359.1" Top="264.6" Width="47.25" Height="18.9" CanGrow="true" Text="Breed:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text147" Left="406.35" Top="264.6" Width="189" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Species]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text148" Left="359.1" Top="283.5" Width="47.25" Height="18.9" CanGrow="true" Text="Color:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text149" Left="406.35" Top="283.5" Width="189" Height="18.9" Border.Lines="Bottom" CanGrow="true" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text150" Left="604.8" Top="264.6" Width="47.25" Height="18.9" CanGrow="true" Text="DOB:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text151" Left="652.05" Top="264.6" Width="94.5" Height="18.9" Border.Lines="Bottom" CanGrow="true" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text152" Left="595.35" Top="179.55" Width="47.25" Height="18.9" CanGrow="true" Text="Date:" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text153" Left="642.6" Top="179.55" Width="103.95" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text154" Left="595.35" Top="198.45" Width="47.25" Height="18.9" CanGrow="true" Text="Time" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text155" Left="642.6" Top="198.45" Width="103.95" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text156" Top="330.75" Width="415.8" Height="18.9" CanGrow="true" Text="Tick and specify procedures to be done. " Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape1" Left="28.35" Top="362.5" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text157" Left="37.8" Top="359.1" Width="75.6" Height="18.9" CanGrow="true" Text="Grooming:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text158" Left="113.4" Top="359.1" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape2" Left="28.35" Top="390.85" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text159" Left="37.8" Top="387.45" Width="75.6" Height="18.9" CanGrow="true" Text="Sedation:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text160" Left="113.4" Top="387.45" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape3" Left="28.35" Top="419.2" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text161" Left="37.8" Top="415.8" Width="75.6" Height="18.9" CanGrow="true" Text="Euthanasia:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text162" Left="113.4" Top="415.8" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape4" Left="28.35" Top="447.55" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text163" Left="37.8" Top="444.15" Width="75.6" Height="18.9" CanGrow="true" Text="Surgery:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text164" Left="113.4" Top="444.15" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape5" Left="368.55" Top="362.5" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text165" Left="378" Top="359.1" Width="122.85" Height="18.9" CanGrow="true" Text="Hospitalization:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text166" Left="500.85" Top="359.1" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape6" Left="368.55" Top="390.85" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text167" Left="378" Top="387.45" Width="122.85" Height="18.9" CanGrow="true" Text="Dental Prophylaxis:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text168" Left="500.85" Top="387.45" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape7" Left="368.55" Top="419.2" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text169" Left="378" Top="415.8" Width="122.85" Height="18.9" CanGrow="true" Text="Observation:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text170" Left="500.85" Top="415.8" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape8" Left="368.55" Top="447.55" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text171" Left="378" Top="444.15" Width="122.85" Height="18.9" CanGrow="true" Text="X-ray:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text172" Left="500.85" Top="444.15" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <ShapeObject Name="Shape9" Left="368.55" Top="475.9" Width="9.45" Height="9.45" Shape="Ellipse"/>
+      <TextObject Name="Text173" Left="378" Top="472.5" Width="122.85" Height="18.9" CanGrow="true" Text="Other:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text174" Left="500.85" Top="472.5" Width="226.8" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text175" Left="85.05" Top="831.6" Width="122.85" Height="18.9" CanGrow="true" Text="Owner’s Signature" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text176" Top="812.7" Width="302.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text177" Left="9.45" Top="907.2" Width="283.5" Height="18.9" CanGrow="true" Text="Representative’s Printed Name and Signature" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text178" Top="888.3" Width="302.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <DataBand Name="Data1" Top="940.88" Width="756" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzAdmissionReport"/>
+      <GroupFooterBand Name="GroupFooter1" Top="946.22" Width="756" PrintOnBottom="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="951.55" Width="756" Height="19.2"/>
+  </ReportPage>
+</Report>

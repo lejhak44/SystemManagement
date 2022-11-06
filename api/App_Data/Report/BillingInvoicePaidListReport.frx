@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="08/13/2021 00:22:57" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+      
+    private void celfDiffAmount_BeforePrint(object sender, EventArgs e)
+    {
+       double GrandTotalAmount = Report.GetTotalValue(&quot;GrandTotalAmount&quot;);
+       double GrandPaymentAmount = Report.GetTotalValue(&quot;GrandPaymentAmount&quot;);
+       double diffAmount = GrandTotalAmount - GrandPaymentAmount;
+       
+       //celfDiffAmount.Text = diffAmount.ToString(&quot;#,#0.00&quot;);
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZb0gCNUtfMnmZXeg8rrOc2Q==">
+      <TableDataSource Name="vzBillingInvoicePaidListReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzBillingInvoicePaidListReport" SelectCommand="SELECT ID_BillingInvoice,&#13;&#10;       Code_BillingInvoice,&#13;&#10;       Date_BillingInvoice,&#13;&#10;       MAX(Date_PaymentTransaction) LastPaidDate,&#13;&#10;       Name_Client,&#13;&#10;       Name_Patient,&#13;&#10;       Payment_ID_FilingStatus,&#13;&#10;       Payment_Name_FilingStatus,&#13;&#10;       ID_Company,&#13;&#10;       DiscountAmount,&#13;&#10;       TotalAmount,&#13;&#10;       SUM(PaymentAmount)           PaymentAmount,&#13;&#10;       ImageLogoLocationFilenamePath,&#13;&#10;       Name_Company,&#13;&#10;       Address_Company,&#13;&#10;       HeaderInfo_Company,&#13;&#10;       AttendingPhysician_ID_Employee,&#13;&#10;       AttendingPhysician_Name_Employee&#13;&#10;FROM   dbo.vzBillingInvoicePaidListReport&#13;&#10;/*@WHERE*/&#13;&#10;GROUP  BY ID_BillingInvoice,&#13;&#10;          Code_BillingInvoice,&#13;&#10;          Date_BillingInvoice,&#13;&#10;          Name_Client,&#13;&#10;          Name_Patient,&#13;&#10;          Payment_ID_FilingStatus,&#13;&#10;          Payment_Name_FilingStatus,&#13;&#10;          ID_Company,&#13;&#10;          DiscountAmount,&#13;&#10;          TotalAmount,&#13;&#10;          ImageLogoLocationFilenamePath,&#13;&#10;          Name_Company,&#13;&#10;          Address_Company,&#13;&#10;          HeaderInfo_Company,&#13;&#10;          AttendingPhysician_ID_Employee,&#13;&#10;          AttendingPhysician_Name_Employee &#13;&#10;">
+        <Column Name="ID_BillingInvoice" DataType="System.Int32"/>
+        <Column Name="Code_BillingInvoice" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="TotalAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmount" DataType="System.Decimal"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="Payment_ID_FilingStatus" DataType="System.Int32"/>
+        <Column Name="Payment_Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Date_BillingInvoice" DataType="System.DateTime"/>
+        <Column Name="LastPaidDate" DataType="System.DateTime"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="AttendingPhysician_ID_Employee" DataType="System.Int32"/>
+        <Column Name="AttendingPhysician_Name_Employee" DataType="System.String"/>
+        <Column Name="DiscountAmount" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="GrandTotalAmount" Expression="[ds.TotalAmount]" Evaluator="Data1"/>
+    <Total Name="GrandPaymentAmount" Expression="[ds.PaymentAmount]" Evaluator="Data1"/>
+    <Total Name="TotalRecord" TotalType="Count" Evaluator="Data1"/>
+    <Total Name="GrandTotalDiscount" Expression="[ds.DiscountAmount]" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="179.55" CanGrow="true">
+      <TextObject Name="Text1" Left="308.85" Width="409.35" Height="28.35" Text="Billing Invoice Paid List Report" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="292.95" Top="85.05" Width="425.25" Height="56.7" CanGrow="true" Brackets="" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="Picture1" Width="252.3" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text27" Left="321.3" Top="28.35" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line2" Top="179.55" Width="718.2" Diagonal="true"/>
+      <TableObject Name="Table1" Top="151.2" Width="720.4" Height="26.46">
+        <TableColumn Name="Column8" Width="60.8"/>
+        <TableColumn Name="Column9" Width="79.66"/>
+        <TableColumn Name="Column10" Width="126.91"/>
+        <TableColumn Name="Column12" Width="81.51"/>
+        <TableColumn Name="Column24" Width="90.96"/>
+        <TableColumn Name="Column13" Width="89.11"/>
+        <TableColumn Name="Column14" Width="91.04"/>
+        <TableColumn Name="Column22" Width="100.41"/>
+        <TableRow Name="Row3" Height="26.46">
+          <TableCell Name="Cell13" Text="BI #" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell14" Text="BI Date" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell15" Text="Client- Patient" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell17" Text="Status" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell36" Text="Discount Amt" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell18" Text="Total Amount" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell19" Text="Paid Amount" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell34" Text="Last Paid Date" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text28" Left="321.3" Top="47.25" Width="396.9" Height="37.8" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="183.51" Width="718.2" Height="30.24" CanGrow="true" Style="Group" EvenStyle="EvenRows" Guides="0" DataSource="vzBillingInvoicePaidListReport" KeepDetail="true">
+      <TableObject Name="tblData" Width="720.12" Height="30.24" GrowToBottom="true">
+        <TableColumn Name="Column1" Width="60.72"/>
+        <TableColumn Name="Column2" Width="79.62"/>
+        <TableColumn Name="Column3" Width="126.87"/>
+        <TableColumn Name="Column7" Width="81.51"/>
+        <TableColumn Name="Column25" Width="90.96"/>
+        <TableColumn Name="Column5" Width="89.07"/>
+        <TableColumn Name="Column6" Width="90.96"/>
+        <TableColumn Name="Column23" Width="100.41"/>
+        <TableRow Name="Row2" Height="30.24">
+          <TableCell Name="Cell6" Text="[ds.Code_BillingInvoice]" HorzAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell7" Text="[ds.Date_BillingInvoice]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell8" Text="[ds.Name_Client] [IIf(Length([ds.Name_Patient]) &gt; 0,&quot; - &quot;, &quot;&quot;)] [ds.Name_Patient]" Font="Arial, 9pt"/>
+          <TableCell Name="Cell12" Text="[ds.Payment_Name_FilingStatus]" HorzAlign="Center" Font="Arial, 9pt"/>
+          <TableCell Name="Cell37" Text="[ds.DiscountAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell10" Text="[ds.TotalAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell11" Text="[ds.PaymentAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell35" Text="[IIf(FormatDateTime([ds.LastPaidDate],&quot;yyyy-MM-dd&quot;) == &quot;0001-01-01&quot;,&quot;&quot;,[ds.LastPaidDate])]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt"/>
+        </TableRow>
+      </TableObject>
+      <Sort>
+        <Sort Expression="[ds.Code_BillingInvoice]"/>
+      </Sort>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="217.71" Width="718.2" Height="85.05" BeforePrintEvent="ReportSummary1_BeforePrint">
+      <LineObject Name="Line1" Width="718.2" Diagonal="true"/>
+      <TableObject Name="Table2" Width="625.83" Height="54.81">
+        <TableColumn Name="Column15" Width="64.34"/>
+        <TableColumn Name="Column16" Width="83.2"/>
+        <TableColumn Name="Column17" Width="196.56"/>
+        <TableColumn Name="Column19" Width="94.5"/>
+        <TableColumn Name="Column20" Width="92.65"/>
+        <TableColumn Name="Column21" Width="94.58"/>
+        <TableRow Name="Row4" Height="26.46">
+          <TableCell Name="Cell20" Text="Record [TotalRecord]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" VertAlign="Center" Font="Arial, 9pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell21" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell22" Text="Total" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell24" Text="[GrandTotalDiscount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell25" Text="[GrandTotalAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell26" Text="[GrandPaymentAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="28.35">
+          <TableCell Name="Cell27" Font="Arial, 10pt"/>
+          <TableCell Name="Cell28" Font="Arial, 10pt"/>
+          <TableCell Name="Cell29" Font="Arial, 10pt"/>
+          <TableCell Name="Cell31" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="celfDiffAmount" BeforePrintEvent="celfDiffAmount_BeforePrint" HorzAlign="Right" Font="Arial, 10pt, style=Bold">
+            <Formats>
+              <NumberFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TableCell>
+          <TableCell Name="Cell33" Font="Arial, 10pt"/>
+        </TableRow>
+      </TableObject>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="306.72" Width="718.2" Height="32.4">
+      <TextObject Name="Text12" Left="9.75" Top="4.05" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,66 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		}
+	],
+	"columns": [
+		{
+			"name": "Date_BillingInvoice",
+			"caption": "Date",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		},
+				{
+			"name": "Name_Client",
+			"caption": "Client",
+			"dataType": "string",
+			"format": ""
+		},
+		{
+			"name": "Name_Item",
+			"caption": "Item / Services",
+			"dataType": "string"
+		},
+		{
+			"name": "TotalQuantity",
+			"caption": "Item / Services",
+			"dataType": ""
+		},
+		{
+			"name": "UnitCost",
+			"caption": "Buying Price",
+			"dataType": ""
+		},
+		{
+			"name": "UnitPrice",
+			"caption": "Selling Price",
+			"dataType": ""
+		},
+		{
+			"name": "GrossSales",
+			"caption": "Gross Sales",
+			"dataType": ""
+		},
+		{
+			"name": "NetCost",
+			"caption": "Net Sales",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	
+	"sort": "Date_BillingInvoice, Name_Client, Name_Item"
+}

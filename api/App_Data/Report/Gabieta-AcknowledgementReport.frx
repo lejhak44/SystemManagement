@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/27/2022 12:21:23" ReportInfo.CreatorVersion="2022.1.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJx4VpFjri1v1qyXD5ZbUhu1">
+      <TableDataSource Name="vzAcknowledgementReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzAcknowledgementReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="718.2" Height="888.3" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text1" Left="54.3" Top="132.3" Width="607.2" Height="18.9" Text="AGAINST MEDICAL ADVICE – ACKNOWLEDGEMENT AND WAIVER" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="37.8" Top="37.8" Width="157.8" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Center_Center"/>
+      <TextObject Name="Text111" Left="179.55" Top="47.25" Width="330.75" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="103.95" Top="66.15" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Center" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text119" Left="9.45" Top="179.55" Width="132.3" Height="18.9" CanGrow="true" Text="PATIENT'S NAME" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text124" Left="151.2" Top="179.55" Width="292.95" Height="18.9" CanGrow="true" Text="[ds.Name_Patient]" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text134" Left="9.45" Top="198.45" Width="132.3" Height="18.9" CanGrow="true" Text="DATE" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text135" Left="9.45" Top="217.35" Width="132.3" Height="18.9" CanGrow="true" Text="VETERINARIAN" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text136" Left="141.75" Top="179.55" Width="9.45" Height="18.9" CanGrow="true" Text=":" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text137" Left="141.75" Top="198.45" Width="9.45" Height="18.9" CanGrow="true" Text=":" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text138" Left="141.75" Top="217.35" Width="9.45" Height="18.9" CanGrow="true" Text=":" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text139" Left="151.2" Top="198.45" Width="141.75" Height="18.9" CanGrow="true" Text="[Date]" Format="Date" Format.Format="d" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text140" Left="9.45" Top="245.7" Width="680.4" Height="75.6" CanGrow="true" Text="The above-named veterinarian has recommended a specific course of therapy, method of treatment or a means of diagnosing and/or treating a medical condition for the patient named above. This decision is a medical decision that is made by the veterinarian based upon the findings of an examination and/or diagnostic testing. The veterinarian believes this recommendation is in the patient’s best interest. &#13;&#10;" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text141" Left="9.45" Top="349.65" Width="680.4" Height="18.9" CanGrow="true" Text="The specific recommendation(s) being made by the veterinarian include the following:" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text142" Left="9.45" Top="378" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text143" Left="9.45" Top="406.35" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text144" Left="9.45" Top="434.7" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text145" Left="9.45" Top="548.1" Width="680.4" Height="94.5" CanGrow="true" Text="The [ds.Name_Client] has opted not to follow the recommendation of the veterinarians as noted above and accepts responsibility for any consequences of that decision. The risk of not following the veterinarian’s recommendations have been fully explained to the [ds.Name_Client] by the veterinarian. The owner waives and release the veterinarian, the clinic [ds.Name_Company]  and its staff for any responsibility, legal liability and claims for future consequences of his/her decision.&#13;&#13;&#10;&#13;&#10;Anent to this, advise has been provided in the possibility of further complications in the pet's condition and fully understood by the owner. These conditions may include, but are not limited to, further deterioration of the pet’s condition and/or death&#13;&#10;&#13;&#10;By signing below the [ds.Name_Client] affirms that she/he is legal owner and the person in lawful custody of pet stated above and warrant to have full power of disposition and to contract in regards of the said animal. Further acknowledged that he/she have read and understand this information and decided not to follow the veterinarian’s recommendation. " HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text146" Left="9.45" Top="670.95" Width="680.4" Height="37.8" CanGrow="true" Text="By signing below the patient acknowledges the she/he has read this information and not elected not to follow the veterinarian’s recommendations." HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text147" Left="9.45" Top="727.65" Width="264.6" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Client]" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text148" Left="9.45" Top="746.55" Width="264.6" Height="18.9" CanGrow="true" Text="Owner’s Signature over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text149" Left="472.5" Top="727.65" Width="217.35" Height="18.9" Border.Lines="Bottom" CanGrow="true" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text150" Left="472.5" Top="746.55" Width="217.35" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text151" Left="9.45" Top="784.35" Width="264.6" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text152" Left="9.45" Top="803.25" Width="264.6" Height="18.9" CanGrow="true" Text="Witness Signature over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text153" Left="472.5" Top="784.35" Width="217.35" Height="18.9" Border.Lines="Bottom" CanGrow="true" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text154" Left="472.5" Top="803.25" Width="217.35" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text155" Left="9.45" Top="463.05" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text156" Left="9.45" Top="491.4" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text157" Left="9.45" Top="519.75" Width="680.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Justify" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <DataBand Name="Data1" Top="893.63" Width="718.2" Height="9.45" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzAcknowledgementReport"/>
+      <GroupFooterBand Name="GroupFooter1" Top="908.42" Width="718.2" Height="7.95" PrintOnBottom="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="921.7" Width="718.2" Height="19.2"/>
+  </ReportPage>
+</Report>

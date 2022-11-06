@@ -1,0 +1,2 @@
+@dotnet ef dbcontext scaffold "Server=DESKTOP-GI3KT54;Database=db_vetcloudv3_IOS-Update_dev;User Id=backup;Password=sql123;" Microsoft.EntityFrameworkCore.SqlServer -o Database/Models -c AppDbContext --context-dir Database --use-database-names --force
+@pause

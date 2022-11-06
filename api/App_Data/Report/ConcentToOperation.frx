@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="09/22/2021 01:52:06" ReportInfo.CreatorVersion="2021.3.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJwdLEq8jiC3dPdXF59H5AAS">
+      <TableDataSource Name="vzConcentToOperation" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzConcentToOperation">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" TopMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="718.2" Height="859.95" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Guides="207.9" Condition="[ds.ID]">
+      <TextObject Name="Text1" Left="63.75" Top="132.3" Width="607.2" Height="18.9" Text="CONSENT TO OPERATION OR PROCEDURE" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="283.5" Width="157.8" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Center_Center"/>
+      <TextObject Name="Text111" Left="207.9" Top="75.6" Width="330.75" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="132.3" Top="94.5" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text140" Top="198.45" Width="708.75" Height="75.6" CanGrow="true" Padding="0, 0, 0, 0" Font="Arial, 11pt" LineHeight="5" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text177" Top="463.05" Width="359.1" Height="18.9" CanGrow="true" Text="Owner’s Signature over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text178" Top="444.15" Width="359.1" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Name_Client]" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text188" Left="18.9" Top="245.7" Width="708.75" Height="85.05" CanGrow="true" Text="I am the legal owner and the person in lawful custody of the animal stated above and warrant that I have full power of disposition and to contract in regards of the said animal.&#13;&#10;&#13;&#10;I hereby give  full consent __________________ to perform surgery and/or treatments for my pet. I understand that during the performance of this procedure, unforeseen conditions may be revealed that may necessitate an extension or variance in the planned procedure. If the occurrence of unforeseen condition arises in the course of the operation, I further request and authorize the veterinarian to do whatever he/she deems advisable. While I expect all procedures to be done to the best of the abilities of the professional staff, I realize that no guarantee or warranty can ethically or professionally be made regarding the results or cure. &#13;&#10;&#13;&#10;The nature and purpose of the operation and possibility of complications have been explained to me by the veterinarian. I acknowledge that no guarantee and assurance has been made asto the resultsthat may be obtained. It is understood that whatever the outcome of the procedure, the clinic (CLINIC NAME) and the veterinarian/s and the staff will not be held liable for any legal charges and claims which may be demanded by anyone.&#13;&#10;&#13;&#10;I agree to assume financial responsibility for payment of charges incurred during this admission to be paid in full at the time of discharge. Failure to pay upon demand, the clinic will initiate legal actions for collection of the fees. I am executing and signing this consent form to attest to the truth of the foregoing facts for whatever legal purpose it may serve.&#13;" Font="Arial, 11pt" LineHeight="5" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text190" Top="548.1" Width="359.1" Height="18.9" CanGrow="true" Text="Witness Signature over Printed Name" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text191" Top="529.2" Width="359.1" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text192" Left="444.15" Top="463.05" Width="264.6" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text193" Left="444.15" Top="444.15" Width="264.6" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text194" Left="444.15" Top="548.1" Width="264.6" Height="18.9" CanGrow="true" Text="Date" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text195" Left="444.15" Top="529.2" Width="264.6" Height="18.9" Border.Lines="Bottom" CanGrow="true" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text196" Left="-103.95" Top="179.55" Width="359.1" Height="18.9" CanGrow="true" Text="PATIENT NAME :&#13;&#10;" Padding="0, 0, 0, 0" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text197" Left="-103.95" Top="198.45" Width="359.1" Height="18.9" CanGrow="true" Text="OWNER'S NAME :&#13;&#10;" Padding="0, 0, 0, 0" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text198" Left="-141.75" Top="217.35" Width="359.1" Height="18.9" CanGrow="true" Text="DATE :&#13;&#10;" Padding="0, 0, 0, 0" HorzAlign="Center" Font="Arial, 11pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text199" Left="151.2" Top="179.55" Width="94.5" Height="18.9" Text="[ds.Name_Patient]" Font="Arial, 11pt"/>
+      <TextObject Name="Text200" Left="151.2" Top="198.45" Width="94.5" Height="18.9" Text="[ds.Name_Client]" Font="Arial, 11pt"/>
+      <DataBand Name="Data1" Top="863.95" Width="718.2" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzConcentToOperation"/>
+      <GroupFooterBand Name="GroupFooter1" Top="867.95" Width="718.2" PrintOnBottom="true"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="871.95" Width="718.2" Height="19.2"/>
+  </ReportPage>
+</Report>

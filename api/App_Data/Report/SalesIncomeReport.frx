@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/03/2022 13:30:59" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    DateTime CurrentDate_BillingInvoice;
+    decimal overall_TotalDiscount = 0;    
+    
+    
+    private void Data1_BeforePrint(object sender, EventArgs e)
+    {
+ 
+      DateTime _CurrentDate_BillingInvoice = ((DateTime)Report.GetColumnValue(&quot;ds.Date_BillingInvoice&quot;)); 
+      
+      if(this.CurrentDate_BillingInvoice != _CurrentDate_BillingInvoice){
+        
+        this.CurrentDate_BillingInvoice = _CurrentDate_BillingInvoice;
+        
+        this.overall_TotalDiscount += ((decimal) Report.GetColumnValue(&quot;ds.TotalDiscountAmountPerDate&quot;));
+      }
+    }
+
+    private void txtTotaNetSales_BeforePrint(object sender, EventArgs e)
+    {
+      
+      decimal overall_NetSale = (decimal) Report.GetTotalValue(&quot;TotalNetSales&quot;);
+      decimal total = 0;  
+      
+      total = overall_NetSale - this.overall_TotalDiscount;
+      
+      txtOverAllDiscountAmount.Text = '(' + this.overall_TotalDiscount.ToString(&quot;#,#0.00&quot;) + ')';
+      txtTotal.Text =  total.ToString(&quot;#,#0.00&quot;);
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFPkQYqwJxaei/eYtCOHZGn/WN5+2ztfJqE1Pt3RBTCum/+JTGbHEgMEDc2WO3gj/Qz/E1KLriPecD5EQ847YwHHXQultbq278OPHvORNspzW6ldfKm02Vdo672elPjeLRacO14KMH91NFS6PVjcCSwg==">
+      <TableDataSource Name="vzSalesIncomentReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzSalesIncomentReport" SelectCommand="SELECT hed.ID_Company,&#13;&#10;       hed.ImageLogoLocationFilenamePath,&#13;&#10;       hed.Name_Company,&#13;&#10;       hed.Address_Company,&#13;&#10;       hed.HeaderInfo_Company,&#13;&#10;       hed.ID_Client,&#13;&#10;       hed.Name_Client,&#13;&#10;       hed.ID_Item,&#13;&#10;       hed.Name_Item,&#13;&#10;       hed.Date_BillingInvoice,&#13;&#10;       hed.TotalQuantity,&#13;&#10;       hed.UnitCost,&#13;&#10;       hed.UnitPrice,&#13;&#10;       hed.GrossSales,&#13;&#10;       hed.NetCost,&#13;&#10;       totalDiscountPerBillDate.TotalDiscountAmountPerDate,&#13;&#10;	   AttendingPhysician_ID_Employee,&#13;&#10;	   AttendingPhysician_Name_Employee&#13;&#10;FROM   vzSalesIncomentReport hed&#13;&#10;       LEFT JOIN vzSalesIncomentReport_TotalDiscountPerBillDate totalDiscountPerBillDate&#13;&#10;               ON hed.ID_Company = totalDiscountPerBillDate.ID_Company1&#13;&#10;                  AND CONVERT(DATE,hed.Date_BillingInvoice) = totalDiscountPerBillDate.Date&#13;&#10;/*@WHERE*/">
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="ID_Client" DataType="System.Int32"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="ID_Item" DataType="System.Int32"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="TotalQuantity" DataType="System.Int32"/>
+        <Column Name="UnitCost" DataType="System.Decimal"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+        <Column Name="NetCost" DataType="System.Decimal"/>
+        <Column Name="Date_BillingInvoice" DataType="System.DateTime"/>
+        <Column Name="TotalDiscountAmountPerDate" DataType="System.Decimal"/>
+        <Column Name="AttendingPhysician_ID_Employee" DataType="System.Int32"/>
+        <Column Name="AttendingPhysician_Name_Employee" DataType="System.String"/>
+        <Column Name="GrossSales" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalNetSales" Expression="[ds.NetCost]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotalGrossSales" Expression="[ds.GrossSales]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="756" Height="179.55" CanGrow="true">
+      <TextObject Name="Text1" Left="365.55" Width="390.45" Height="28.35" Text="Sales Income Report" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="302.4" Top="75.6" Width="453.6" Height="56.7" CanGrow="true" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="Picture1" Width="299.55" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text27" Left="359.1" Top="28.35" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text33" Left="359.1" Top="47.25" Width="396.9" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text40" Left="75.6" Top="151.2" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" Text="Client" Duplicates="Hide" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text41" Left="189" Top="151.2" Width="132.3" Height="18.9" Border.Lines="Right, Top, Bottom" CanGrow="true" Text="Item / Service" Duplicates="Hide" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text42" Left="321.3" Top="151.2" Width="66.15" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Quantity" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text43" Left="387.45" Top="151.2" Width="85.05" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Buying Price" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text44" Left="472.5" Top="151.2" Width="85.05" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Selling Price" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text45" Left="652.05" Top="151.2" Width="94.5" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Net Sales" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text49" Top="151.2" Width="75.6" Height="18.9" Border.Lines="Left, Top, Bottom" CanGrow="true" Text="Date" Duplicates="Hide" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text56" Left="557.55" Top="151.2" Width="94.5" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Gross Sales" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="183.55" Width="756" Height="18.9" CanGrow="true" Style="Footer" EvenStyle="EvenRows" BeforePrintEvent="Data1_BeforePrint" DataSource="vzSalesIncomentReport">
+      <TextObject Name="Text34" Left="75.6" Width="113.4" Height="18.9" CanGrow="true" Text="[ds.Name_Client]" Duplicates="Hide" Font="Arial, 9pt"/>
+      <TextObject Name="Text35" Left="189" Width="132.3" Height="18.9" CanGrow="true" Text="[ds.Name_Item]" Font="Arial, 9pt"/>
+      <TextObject Name="Text36" Left="321.3" Width="66.15" Height="18.9" Text="[ds.TotalQuantity]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text37" Left="387.45" Width="85.05" Height="18.9" Text="[ds.UnitCost]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="Text38" Left="472.5" Width="85.05" Height="18.9" Text="[ds.UnitPrice]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="Text39" Left="652.05" Width="94.5" Height="18.9" Text="[ds.NetCost]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="Text50" Width="75.6" Height="18.9" CanGrow="true" Text="[ds.Date_BillingInvoice]" Duplicates="Hide" Format="Custom" Format.Format="MM/dd/yyyy" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text57" Left="557.55" Width="94.5" Height="18.9" Text="[ds.GrossSales]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <Sort>
+        <Sort Expression="[ds.Date_BillingInvoice]"/>
+        <Sort Expression="[ds.Name_Client]"/>
+        <Sort Expression="[ds.Name_Item]"/>
+      </Sort>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="206.45" Width="756" Height="151.2">
+      <TextObject Name="txtTotaNetSales" Left="642.6" Top="18.9" Width="103.95" Height="18.9" BeforePrintEvent="txtTotaNetSales_BeforePrint" Text="[TotalNetSales]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line1" Width="746.55"/>
+      <TextObject Name="Text47" Left="472.5" Top="18.9" Width="170.1" Height="18.9" CanGrow="true" Text="Total Net Sales" Duplicates="Hide" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text48" Left="9.45" Top="122.85" Width="736.65" Height="18.9" Text="These results are based from bill date of Billing Invoice records. (Pending, Partially and Fully Paid)." Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="txtOverAllDiscountAmount" Left="642.6" Top="37.8" Width="103.95" Height="18.9" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text53" Left="378" Top="37.8" Width="264.6" Height="18.9" CanGrow="true" Text="Total Discount Amount" Duplicates="Hide" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="txtTotal" Left="642.6" Top="56.7" Width="103.95" Height="18.9" Border.Lines="Top" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text55" Left="472.5" Top="56.7" Width="170.1" Height="18.9" CanGrow="true" Text="Total Sales Income" Duplicates="Hide" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text58" Left="642.6" Width="103.95" Height="18.9" BeforePrintEvent="txtTotaNetSales_BeforePrint" Text="[TotalGrossSales]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text59" Left="472.5" Width="170.1" Height="18.9" CanGrow="true" Text="Total Gross Sales" Duplicates="Hide" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="361.65" Width="756" Height="32.4">
+      <TextObject Name="Text12" Left="9.75" Top="13.5" Width="736.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

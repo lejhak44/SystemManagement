@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="02/11/2022 12:32:54" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    int Current_ID_BillingInvoice = 0;
+    int Current2_ID_BillingInvoice = 0;
+    int Current3_ID_BillingInvoice = 0;
+
+    private void txtCode_BeforePrint(object sender, EventArgs e)
+    {
+      int _Current_ID_BillingInvoice = ((int)Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;)); 
+      
+      if(this.Current_ID_BillingInvoice == _Current_ID_BillingInvoice){
+        
+           TextObject txtBox = (TextObject) sender;
+           txtBox.Visible = false;
+      }else{  
+        
+        this.Current_ID_BillingInvoice = _Current_ID_BillingInvoice;
+      }
+    }
+
+    private void txtDateBI_BeforePrint(object sender, EventArgs e)
+    {
+      int _Current_ID_BillingInvoice = ((int)Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;)); 
+      
+      if(this.Current2_ID_BillingInvoice == _Current_ID_BillingInvoice){
+        
+        TextObject txtBox = (TextObject) sender;
+        txtBox.Visible = false;
+      }else{  
+        
+        this.Current2_ID_BillingInvoice = _Current_ID_BillingInvoice;
+      }
+    }
+
+    private void txtClientPatient_BeforePrint(object sender, EventArgs e)
+    {
+      int _Current_ID_BillingInvoice = ((int)Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;)); 
+      
+      if(this.Current3_ID_BillingInvoice == _Current_ID_BillingInvoice){
+        
+        TextObject txtBox = (TextObject) sender;
+        txtBox.Visible = false;
+      }else{  
+        
+        this.Current3_ID_BillingInvoice = _Current_ID_BillingInvoice;
+      }
+    }
+
+    private void ReportSummary1_BeforePrint(object sender, EventArgs e)
+    {
+      
+      rowCash.Visible = (decimal) Report.GetTotalValue(&quot;TotalPaymentAmountCash&quot;) &gt; 0;
+      rowCheck.Visible = (decimal) Report.GetTotalValue(&quot;TotalPaymentAmountCheck&quot;) &gt; 0;
+      rowGCash.Visible = (decimal) Report.GetTotalValue(&quot;TotalPaymentAmountGCash&quot;) &gt; 0;           
+      rowDebitCredit.Visible = (decimal) Report.GetTotalValue(&quot;TotalPaymentAmountDebitCredit&quot;) &gt; 0;
+      rowDeposit.Visible = (decimal) Report.GetTotalValue(&quot;TotalPaymentAmountDeposit&quot;) &gt; 0;
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZDSYR2HpKncLRbLCWMS6hrw==">
+      <TableDataSource Name="vzPaymentTransactionSummaryReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzPaymentTransactionSummaryReport">
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="BalanceAmount" DataType="System.Decimal"/>
+        <Column Name="Code_BillingInvoice" DataType="System.String"/>
+        <Column Name="Code_PaymentTransaction" DataType="System.String"/>
+        <Column Name="Column" Alias="PaymentAmountCash" DataType="System.Decimal" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 1,[ds.PaymentAmount], 0)"/>
+        <Column Name="Column1" Alias="PaymentAmountCheck" DataType="System.Decimal" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 2,[ds.PaymentAmount], 0)"/>
+        <Column Name="Column2" Alias="PaymentAmountGCash" DataType="System.Decimal" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 3,[ds.PaymentAmount], 0)"/>
+        <Column Name="Column3" Alias="PaymentAmountDebitCredit" DataType="System.Decimal" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 4,[ds.PaymentAmount], 0)"/>
+        <Column Name="Date_BillingInvoice" DataType="System.DateTime"/>
+        <Column Name="Date_PaymentTransaction" DataType="System.DateTime"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="ID_BillingInvoice" DataType="System.Int32"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ID_PaymentMethod" DataType="System.Int32"/>
+        <Column Name="ID_PaymentTransaction" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_PaymentMethod" DataType="System.String"/>
+        <Column Name="PayableAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmountCredits" DataType="System.Int32" PropName="Column4" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 5,[ds.PaymentAmount], 0)"/>
+        <Column Name="RemainingAmount" DataType="System.Decimal"/>
+        <Column Name="PaymentAmountDeposit" DataType="System.Decimal" PropName="Column4" Calculated="true" Expression="IIf([ds.ID_PaymentMethod] == 6,[ds.PaymentAmount], 0)"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalPaymentAmount" Expression="[ds.PaymentAmount]" Evaluator="Data1"/>
+    <Total Name="TotalRemainingAmount" Expression="[ds.RemainingAmount]" Evaluator="Data1" ResetAfterPrint="false"/>
+    <Total Name="TotalPaymentAmountCash" Expression="[ds.PaymentAmountCash]" Evaluator="Data1"/>
+    <Total Name="TotalPaymentAmountCheck" Expression="[ds.PaymentAmountCheck]" Evaluator="Data1"/>
+    <Total Name="TotalPaymentAmountGCash" Expression="[ds.PaymentAmountGCash]" Evaluator="Data1"/>
+    <Total Name="TotalPaymentAmountDebitCredit" Expression="[ds.PaymentAmountDebitCredit]" Evaluator="Data1"/>
+    <Total Name="TotalPaymentAmountCredits" Expression="[ds.PaymentAmountCredits]" Evaluator="Data1"/>
+    <Total Name="TotalPaymentAmountDeposit" Expression="[ds.PaymentAmountDeposit]" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="164.43">
+      <TextObject Name="Text1" Left="308.85" Width="409.35" Height="28.35" Text="Payment Transaction Detail" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="302.4" Top="85.05" Width="415.8" Height="47.25" CanGrow="true" CanBreak="false" Brackets="" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="Picture1" Width="252.3" Height="84.9" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text27" Left="321.3" Top="28.35" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text39" Top="141.75" Width="75.6" Height="18.9" Text="Ref #" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text41" Left="75.6" Top="141.75" Width="198.45" Height="18.9" Text="Client - Patient" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text42" Left="274.05" Top="141.75" Width="66.15" Height="18.9" Text="Balance" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text43" Left="340.2" Top="141.75" Width="75.6" Height="18.9" Text="PT #" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text44" Left="415.8" Top="141.75" Width="75.6" Height="18.9" Text="Paid Date" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text45" Left="491.4" Top="141.75" Width="66.15" Height="18.9" Text="Method" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text46" Left="557.55" Top="141.75" Width="85.05" Height="18.9" Text="Payment" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text47" Left="642.6" Top="141.75" Width="75.6" Height="18.9" Text="Remaining" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="Line2" Top="160.65" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text48" Left="255.15" Top="47.25" Width="463.05" Height="37.8" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="168.43" Width="718.2" Height="32.13" CanGrow="true" Style="Group" EvenStyle="EvenRows" Guides="0" DataSource="vzPaymentTransactionSummaryReport" KeepDetail="true">
+      <TextObject Name="txtCode" Width="77.49" Height="18.9" BeforePrintEvent="txtCode_BeforePrint" Text="[ds.Code_BillingInvoice]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text30" Left="274.05" Width="66.15" Height="18.9" Text="[ds.PayableAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text31" Left="340.2" Width="75.6" Height="18.9" Text="[ds.Code_PaymentTransaction]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text32" Left="415.8" Width="77.49" Height="18.9" Text="[ds.Date_PaymentTransaction]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text33" Left="491.4" Width="66.15" Height="18.9" CanGrow="true" Text="[ds.Name_PaymentMethod]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text34" Left="557.55" Width="85.05" Height="18.9" Text="[ds.PaymentAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text35" Left="642.6" Width="75.6" Height="18.9" Text="[ds.RemainingAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="txtClientPatient" Left="75.6" Width="198.45" Height="18.9" CanGrow="true" BeforePrintEvent="txtClientPatient_BeforePrint" Text="[ds.Name_Client] [IIf(Length([ds.Name_Patient]) &gt; 0,&quot; - &quot;, &quot;&quot;)] [ds.Name_Patient]" Font="Arial, 9pt"/>
+      <Sort>
+        <Sort Expression="[ds.Date_BillingInvoice]"/>
+        <Sort Expression="[ds.ID_BillingInvoice]"/>
+        <Sort Expression="[ds.Date_PaymentTransaction]"/>
+      </Sort>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="204.56" Width="718.2" Height="245.7" BeforePrintEvent="ReportSummary1_BeforePrint">
+      <TextObject Name="Text36" Left="538.65" Top="9.45" Width="103.95" Height="18.9" Text="[TotalPaymentAmount]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text38" Top="9.45" Width="75.6" Height="18.9" Text="Totals" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line1" Width="718.2" Diagonal="true"/>
+      <TableObject Name="Table1" Left="9.45" Top="47.25" Width="444.15" Height="189">
+        <TableColumn Name="Column1" Width="122.85"/>
+        <TableColumn Name="Column2" Width="122.85"/>
+        <TableColumn Name="Column5" Width="94.5"/>
+        <TableColumn Name="Column6" Width="103.95"/>
+        <TableRow Name="rowCash" VisibleExpression="[TotalPaymentAmountCash] &gt; 0" Height="28.35">
+          <TableCell Name="Cell1" Text="Cash" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell2" Text="[TotalPaymentAmountCash]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell33" Font="Arial, 9pt"/>
+          <TableCell Name="Cell38" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="rowCheck" VisibleExpression="[ds.PaymentAmountCheck] &gt; 0" Height="28.35">
+          <TableCell Name="Cell6" Text="Check" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell7" Text="[TotalPaymentAmountCheck]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell34" Font="Arial, 9pt"/>
+          <TableCell Name="Cell39" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="rowGCash" VisibleExpression="[ds.PaymentAmountGCash] &gt; 0" Height="28.35">
+          <TableCell Name="Cell11" Text="G-Cash" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell12" Text="[TotalPaymentAmountGCash]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell35" Font="Arial, 9pt"/>
+          <TableCell Name="Cell40" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="rowDebitCredit" VisibleExpression="IIf([TotalPaymentAmountDebitCredit] &gt; 0.00, true, false)" Height="28.35">
+          <TableCell Name="Cell16" Text="Debit / Credit Card" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell17" Text="[TotalPaymentAmountDebitCredit]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell36" Font="Arial, 9pt"/>
+          <TableCell Name="Cell41" Font="Arial, 9pt"/>
+        </TableRow>
+        <TableRow Name="rowCredits" VisibleExpression="IIf([ds.PaymentAmountCredits] &gt; 0.00, true, false)" Height="28.35">
+          <TableCell Name="Cell43" Text="Credits" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell44" Text="[TotalPaymentAmountCredits]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell45" Font="Arial, 10pt"/>
+          <TableCell Name="Cell46" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="rowDeposit" Height="28.35">
+          <TableCell Name="Cell47" Text="Deposit" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell48" Text="[TotalPaymentAmountDeposit]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell49" Font="Arial, 10pt"/>
+          <TableCell Name="Cell50" Font="Arial, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row5">
+          <TableCell Name="Cell21" Border.Lines="Top" Text="Payment" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="Top" Text="[TotalPaymentAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+          <TableCell Name="Cell37" Border.Lines="Top" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell42" Border.Lines="Top" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+        </TableRow>
+      </TableObject>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="454.26" Width="718.2" Height="32.4">
+      <TextObject Name="Text12" Left="9.75" Top="4.05" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

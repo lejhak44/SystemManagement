@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="07/15/2021 07:51:07" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+      
+    private void celfDiffAmount_BeforePrint(object sender, EventArgs e)
+    {
+     
+                                                                        
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZ/8W8dwYOJ7wERdeyXGOo+g==">
+      <TableDataSource Name="vzReceiveDepositCredit" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzReceiveDepositCredit">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Comment" DataType="System.String"/>
+        <Column Name="ID_Client" DataType="System.Int32"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="CreditAmount" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalCreditAmountPerDate" Expression="[ds.CreditAmount]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalCreditAmountPerCLient" Expression="[ds.CreditAmount]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="179.55" CanGrow="true">
+      <TextObject Name="Text1" Left="308.85" Width="409.35" Height="28.35" Text="Received Credit Deposit List" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="292.95" Top="85.05" Width="425.25" Height="56.7" CanGrow="true" Brackets="" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="Picture1" Width="252.3" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text27" Left="321.3" Top="28.35" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <LineObject Name="Line2" Top="179.55" Width="718.2" Diagonal="true"/>
+      <TextObject Name="Text28" Left="321.3" Top="47.25" Width="396.9" Height="37.8" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TableObject Name="Table1" Top="153.09" Width="706.89" Height="26.46">
+        <TableColumn Name="Column8" Width="269.06"/>
+        <TableColumn Name="Column23" Width="299.25"/>
+        <TableColumn Name="Column22" Width="138.58"/>
+        <TableRow Name="Row3" Height="26.46">
+          <TableCell Name="Cell13" Text="Client" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell35" Text="Note" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell34" Text="Amount" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </TableRow>
+      </TableObject>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="183.51" Width="718.2" Height="32.13" Condition="[ds.Date]">
+      <TextObject Name="Text2" Top="3.78" Width="207.9" Height="28.35" Text="[[ds.Date]]" Format="Date" Format.Format="d" VertAlign="Center" Font="Arial, 9pt, style=Bold, Italic"/>
+      <GroupHeaderBand Name="GroupHeader2" Top="219.6" Width="718.2" Condition="[ds.ID_Client]">
+        <DataBand Name="Data1" Top="223.56" Width="718.2" Height="18.9" CanGrow="true" Style="Group" EvenStyle="EvenRows" Guides="0" DataSource="vzReceiveDepositCredit" KeepDetail="true">
+          <TextObject Name="Text29" Left="18.9" Width="249.48" Height="18.9" CanGrow="true" Text="[ds.Name_Client]" Duplicates="Hide" VertAlign="Center" Font="Arial, 9pt"/>
+          <TextObject Name="Text30" Left="274.05" Width="287.28" Height="18.9" CanGrow="true" Text="[ds.Code] - [ds.Comment]" VertAlign="Center" Font="Arial, 9pt"/>
+          <TextObject Name="Text31" Left="567" Width="139.86" Height="18.9" CanGrow="true" Text="[ds.CreditAmount]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+          <Sort>
+            <Sort Expression="[ds.Name_Client]"/>
+            <Sort Expression="[ds.Date]"/>
+            <Sort Expression="[ds.ID]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="246.42" Width="718.2" Height="37.8">
+          <TextObject Name="Text34" Left="198.45" Width="362.88" Height="18.9" CanGrow="true" Text="Total per Client" Duplicates="Hide" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TextObject Name="Text35" Left="567" Width="139.86" Height="18.9" Text="[TotalCreditAmountPerCLient]" Duplicates="Hide" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="288.18" Width="718.2" Height="28.35">
+        <TextObject Name="Text32" Left="567" Width="139.86" Height="18.9" Text="[TotalCreditAmountPerDate]" Duplicates="Hide" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt"/>
+        <TextObject Name="Text33" Left="406.35" Width="154.98" Height="18.9" CanGrow="true" Text="Total" Duplicates="Hide" HorzAlign="Right" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <LineObject Name="Line3" Left="-9.45" Width="718.2"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="320.49" Width="718.2" Height="32.4">
+      <TextObject Name="Text12" Left="9.75" Top="4.05" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

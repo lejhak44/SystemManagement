@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="10/20/2022 09:36:42" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFPkQYqwJxaei/eYtCOHZGn/WN5+2ztfJqE1Pt3RBTCumKVRk4srasDm92c2d6LSGpiJlEur03XUVVKCPo6XAyCKKWz+JaswRcuFglxMq6HAJWtEuhzrNs2RiJCzjLWC8I">
+      <TableDataSource Name="vzVeterinaryHealthClinicReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzVeterinaryHealthClinicReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Address_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Client" DataType="System.String"/>
+        <Column Name="ContactNumber2_Client" DataType="System.String"/>
+        <Column Name="Email_Client" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Name_Species" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="DestinationAddress" DataType="System.String"/>
+        <Column Name="Color" DataType="System.String"/>
+        <Column Name="Weight" DataType="System.String"/>
+        <Column Name="ID_Item" DataType="System.Int32"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="LotNumber" DataType="System.String"/>
+        <Column Name="ID_Patient" DataType="System.Int32"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="AttendingPhysician_ID_Employee" DataType="System.Int32"/>
+        <Column Name="AttendingPhysician_Name_Employee" DataType="System.String"/>
+        <Column Name="TINNumber" DataType="System.String"/>
+        <Column Name="PTR" DataType="System.String"/>
+        <Column Name="PRCLicenseNumber" DataType="System.String"/>
+        <Column Name="Microchip" DataType="System.String"/>
+        <Column Name="DatePRCExpiration" DataType="System.String"/>
+        <Column Name="DateVaccination" DataType="System.String"/>
+        <Column Name="Comment_VaccinationOption" DataType="System.String"/>
+        <Column Name="Birthdate" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="803.25" CanGrow="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text1" Left="7.05" Top="75.6" Width="739.5" Height="28.35" Text="VETERINARY HEALTH CERTIFICATE" HorzAlign="Center" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text111" Left="151.2" Top="18.9" Width="463.05" Height="18.9" CanGrow="true" Text="[ds.Name_Company]" HorzAlign="Center" Font="Arial, 16pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text112" Left="160.65" Top="47.25" Width="434.7" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Center" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text114" Left="519.75" Top="113.4" Width="113.4" Height="18.9" CanGrow="true" Text="Control No:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text115" Left="519.75" Top="132.3" Width="113.4" Height="18.9" CanGrow="true" Text="Date:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text116" Left="519.75" Top="151.2" Width="113.4" Height="18.9" CanGrow="true" Text="Time:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text117" Left="37.8" Top="198.45" Width="321.3" Height="18.9" CanGrow="true" Text="TO WHOM IT MAY CONCERN:" Font="Arial, 10pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text118" Left="37.8" Top="236.25" Width="548.1" Height="18.9" CanGrow="true" Text="This is to certify that I have examined, on this date, the dog/cat described below:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text119" Left="37.8" Top="283.5" Width="160.65" Height="18.9" CanGrow="true" Text="Owned by" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text120" Left="37.8" Top="302.4" Width="160.65" Height="18.9" CanGrow="true" Text="Residing at" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text121" Left="37.8" Top="321.3" Width="160.65" Height="18.9" CanGrow="true" Text="Telephone/Cellphone No." Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text122" Left="37.8" Top="340.2" Width="160.65" Height="18.9" CanGrow="true" Text="Email" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text124" Left="217.35" Top="283.5" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Name_Client]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text125" Left="217.35" Top="302.4" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.Address_Client]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text126" Left="217.35" Top="321.3" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.ContactNumber_Client] [ds.ContactNumber2_Client]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text127" Left="217.35" Top="340.2" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Email_Client]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text130" Left="198.45" Top="340.2" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text131" Left="198.45" Top="321.3" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text132" Left="198.45" Top="302.4" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text133" Left="198.45" Top="283.5" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text134" Left="37.8" Top="463.05" Width="756" Height="47.25" CanGrow="true" Text="And to the best of my knowledge and ability to determine with the procedures used, find the dog/cat at the time of the examination to be apparently free from evidence of dangerous communicable animal diseases" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text135" Left="37.8" Top="529.2" Width="160.65" Height="18.9" CanGrow="true" Text="Name of Pet" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text136" Left="37.8" Top="548.1" Width="160.65" Height="18.9" CanGrow="true" Text="Species / Breed" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text138" Left="37.8" Top="567" Width="160.65" Height="18.9" CanGrow="true" Text="Color" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text139" Left="37.8" Top="604.8" Width="160.65" Height="18.9" CanGrow="true" Text="Gender" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text140" Left="217.35" Top="529.2" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Name_Patient]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text141" Left="217.35" Top="548.1" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.Name_Species]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text143" Left="217.35" Top="567" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Color]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text144" Left="217.35" Top="604.8" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.Name_Gender]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text145" Left="198.45" Top="604.8" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text146" Left="198.45" Top="567" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text148" Left="198.45" Top="548.1" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text149" Left="198.45" Top="529.2" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text153" Left="37.8" Top="623.7" Width="160.65" Height="18.9" CanGrow="true" Text="Weight" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text154" Left="217.35" Top="623.7" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.Weight]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text155" Left="198.45" Top="623.7" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text156" Left="37.8" Top="642.6" Width="160.65" Height="18.9" CanGrow="true" Text="Microchip No:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text157" Left="217.35" Top="642.6" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.Microchip]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text158" Left="198.45" Top="642.6" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text159" Left="37.8" Top="737.1" Width="680.4" Height="47.25" CanGrow="true" Text="[ds.Comment_VaccinationOption]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text171" Left="633.15" Top="113.4" Width="113.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Code]" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text172" Left="633.15" Top="132.3" Width="113.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Date]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text173" Left="633.15" Top="151.2" Width="113.4" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.Date]" Format="Time" Format.Format="hh:mm tt" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text175" Left="37.8" Top="425.25" Width="321.3" Height="18.9" CanGrow="true" Text="DESCRIPTION:" Font="Arial, 10pt, style=Bold" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text123" Left="37.8" Top="661.5" Width="160.65" Height="18.9" CanGrow="true" Text="Destination" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text128" Left="217.35" Top="661.5" Width="472.5" Height="18.9" CanGrow="true" Text="[ds.DestinationAddress]" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text129" Left="198.45" Top="661.5" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text176" Left="37.8" Top="585.9" Width="160.65" Height="18.9" CanGrow="true" Text="Date of Birth:" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text177" Left="217.35" Top="585.9" Width="359.1" Height="18.9" CanGrow="true" Text="[ds.Birthdate]" Format="Date" Format.Format="d" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text178" Left="198.45" Top="585.9" Width="18.9" Height="18.9" CanGrow="true" Text=":" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      <PictureObject Name="Picture1" Top="18.9" Width="151.2" Height="122.85" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Center_Center"/>
+      <DataBand Name="Data1" Top="808.58" Width="756" Visible="false" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzVeterinaryHealthClinicReport"/>
+      <GroupFooterBand Name="GroupFooter1" Top="813.92" Width="756" Height="187.5" PrintOnBottom="true">
+        <TextObject Name="Text162" Left="481.95" Top="28.35" Width="264.6" Height="18.9" Border.Lines="Top" CanGrow="true" Text="Name and Signature of Veterinarian" HorzAlign="Center" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text163" Left="481.95" Top="47.25" Width="85.05" Height="18.9" CanGrow="true" Text="TIN:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text164" Left="481.95" Top="66.15" Width="85.05" Height="18.9" CanGrow="true" Text="PTR:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text165" Left="481.95" Top="85.05" Width="85.05" Height="18.9" CanGrow="true" Text="PRC:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text166" Left="481.95" Top="103.95" Width="85.05" Height="18.9" CanGrow="true" Text="Expiry Date:" HorzAlign="Right" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text167" Left="567" Top="47.25" Width="179.55" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.TINNumber]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text168" Left="567" Top="66.15" Width="179.55" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.PTR]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text169" Left="567" Top="85.05" Width="179.55" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.PRCLicenseNumber]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text170" Left="567" Top="103.95" Width="179.55" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.DatePRCExpiration]" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+        <TextObject Name="Text174" Left="481.95" Top="9.45" Width="264.6" Height="18.9" Border.Lines="Bottom" CanGrow="true" Text="[ds.AttendingPhysician_Name_Employee]" HorzAlign="Center" VertAlign="Bottom" Font="Arial, 10pt" TextRenderType="HtmlParagraph"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="1006.75" Width="756" Height="19.2">
+      <TextObject Name="Text12" Left="38.1" Top="-3.15" Width="699.3" Height="18.9" CanBreak="false" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text5" Left="547.2" Width="201.6" Height="19.2" CanBreak="false" Text="[Page#] of [TotalPages#]" HorzAlign="Right" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

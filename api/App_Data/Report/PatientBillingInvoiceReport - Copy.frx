@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/22/2021 18:44:50" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void GroupFooter1_BeforePrint(object sender, EventArgs e)
+    {
+                                                                                          
+      rowDiscountRate.Visible = (decimal) Report.GetColumnValue(&quot;ds.DiscountRate&quot;) &gt; 0; 
+      rowDiscountAmount.Visible = (decimal) Report.GetColumnValue(&quot;ds.DiscountAmount&quot;) &gt; 0; 
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZ4X9jn0Va4gbXbjwl1lrwRA==">
+      <TableDataSource Name="vzPatientBillingInvoiceReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzPatientBillingInvoiceReport">
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="ApprovedBy_Name_User" DataType="System.String"/>
+        <Column Name="BillingAddress" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="CreatedBy_Name_User" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="DateApproved" DataType="System.DateTime"/>
+        <Column Name="GrossAmount" DataType="System.Decimal"/>
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="ID_BillingInvoice_Detail" DataType="System.Int32"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_TaxScheme" DataType="System.String"/>
+        <Column Name="NetAmount" DataType="System.Decimal"/>
+        <Column Name="Quantity" DataType="System.Int32"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+        <Column Name="VatAmount" DataType="System.Decimal"/>
+        <Column Name="SubTotal" DataType="System.Decimal"/>
+        <Column Name="DiscountRate" DataType="System.Decimal"/>
+        <Column Name="DiscountAmount" DataType="System.Decimal"/>
+        <Column Name="TotalAmount" DataType="System.Decimal"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GroupHeader1" Width="756" Height="245.7" CanGrow="true" Condition="[ds.ID]">
+      <TextObject Name="Text4" Left="368.55" Top="160.65" Width="132.3" Height="18.9" CanGrow="true" CanBreak="false" Text="Billing Address" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="18.9" Top="122.85" Width="47.25" Height="18.9" Text="BI #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="66.15" Top="122.85" Width="179.55" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text5" Left="500.85" Top="160.65" Width="255.15" Height="37.8" CanGrow="true" CanBreak="false" Text="[ds.BillingAddress]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Top="141.75" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="141.75" Width="179.55" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text8" Top="160.65" Width="66.15" Height="18.9" Text="Status:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text9" Left="66.15" Top="160.65" Width="179.55" Height="18.9" Text="[ds.Name_FilingStatus]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text17" Left="623.7" Top="207.9" Width="132.3" Height="18.9" Border.Lines="All" Text="Amount" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text14" Top="207.9" Width="359.1" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Item" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text15" Left="359.1" Top="207.9" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Quantity" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text16" Left="472.5" Top="207.9" Width="151.2" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Unit Price" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="472.5" Width="283.5" Height="28.35" Text="Statement Of Account" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text32" Left="396.9" Top="141.75" Width="103.95" Height="18.9" Text="Patient Name:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="500.85" Top="141.75" Width="255.15" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Patient]" Font="Calibri, 12pt"/>
+      <PictureObject Name="Picture1" Width="290.1" Height="66" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text42" Left="359.1" Top="28.35" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text43" Left="396.9" Top="122.85" Width="103.95" Height="18.9" Text="Client:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text44" Left="500.85" Top="122.85" Width="255.15" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Client]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text112" Left="292.95" Top="47.25" Width="463.05" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <DataBand Name="Data1" Top="251.03" Width="756" Height="28.35" Style="Header" EvenStyle="EvenRows" DataSource="vzPatientBillingInvoiceReport">
+        <TextObject Name="Text18" Left="623.7" Top="9.45" Width="132.3" Height="18.9" Text="[ds.Amount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text19" Top="9.45" Width="359.1" Height="18.9" Text="[ds.Name_Item]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text20" Left="359.1" Top="9.45" Width="113.4" Height="18.9" Text="[ds.Quantity]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text21" Left="472.5" Top="9.45" Width="151.2" Height="18.9" Text="[ds.UnitPrice]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Calibri, 12pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="284.72" Width="756" Height="245.7" BeforePrintEvent="GroupFooter1_BeforePrint" CanBreak="true" PrintOnBottom="true">
+        <TextObject Name="Text30" Left="18.9" Top="141.75" Width="302.4" Height="18.9" Border.Lines="Top" Text="Created By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text31" Left="463.05" Top="141.75" Width="292.95" Height="18.9" Border.Lines="Top" Text="Approved By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text10" Left="463.05" Top="122.85" Width="292.95" Height="18.9" Text="[ds.ApprovedBy_Name_User]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text11" Left="18.9" Top="122.85" Width="302.4" Height="18.9" Text="[ds.CreatedBy_Name_User]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text12" Left="18.9" Top="226.8" Width="727.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+        <TableObject Name="Table1" Left="472.5" Top="9.45" Width="285.41" Height="85.04">
+          <TableColumn Name="Column1" Width="153.09"/>
+          <TableColumn Name="colDiscountRate" Width="132.32"/>
+          <TableRow Name="Row1" Height="21.26">
+            <TableCell Name="Cell1" Text="SubTotal:" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell2" Text="[ds.SubTotal]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
+          </TableRow>
+          <TableRow Name="rowDiscountRate" Height="21.26">
+            <TableCell Name="Cell6" Text="Discount Rate:" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell7" Text="[ds.DiscountRate]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
+          </TableRow>
+          <TableRow Name="rowDiscountAmount" Height="21.26">
+            <TableCell Name="Cell11" Text="Discount Amount:" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell12" Text="[ds.DiscountAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
+          </TableRow>
+          <TableRow Name="Row4" Height="21.26">
+            <TableCell Name="Cell16" Text="Total Amount:" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell17" Text="[ds.TotalAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <LineObject Name="Line1" Width="756" Diagonal="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

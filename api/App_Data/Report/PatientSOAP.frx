@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="06/03/2022 13:23:44" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;                              
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqfRTiALSJsR18/ghSMPqU51XWPl+FoO6FBhoN5T4buBBHKJwECj0sa4YcB/g00+gJx18eYBnopXJPd4btP/HOy7">
+      <TableDataSource Name="vzPatientSOAP" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzPatientSOAP">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="Comment" DataType="System.String"/>
+        <Column Name="Name_CreatedBy" DataType="System.String"/>
+        <Column Name="Name_Client" DataType="System.String"/>
+        <Column Name="Subjective" DataType="System.String"/>
+        <Column Name="Objective" DataType="System.String"/>
+        <Column Name="Assessment" DataType="System.String"/>
+        <Column Name="Planning" DataType="System.String"/>
+        <Column Name="Prescription" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="History" DataType="System.String"/>
+        <Column Name="ClinicalExamination" DataType="System.String"/>
+        <Column Name="Diagnosis" DataType="System.String"/>
+        <Column Name="Treatment" DataType="System.String"/>
+        <Column Name="ClientCommunication" DataType="System.String"/>
+        <Column Name="ContactNumber_Company" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="Name_Gender" DataType="System.String"/>
+        <Column Name="Species" DataType="System.String"/>
+        <Column Name="Age_Patient" DataType="System.String"/>
+        <Column Name="LaboratoryRemarks" DataType="System.String"/>
+        <Column Name="AttendingPhysician_PRCLicenseNumber_Employee" DataType="System.String"/>
+        <Column Name="AttendingPhysician_PTR_Employee" DataType="System.String"/>
+        <Column Name="AttendingPhysician_S2_Employee" DataType="System.String"/>
+        <Column Name="AttendingPhysician_Name_Employee" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="1369.05" CanGrow="true" CanShrink="true" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Condition="[ds.ID]">
+      <TextObject Name="Text2" Left="-18.9" Top="94.5" Width="85.05" Height="18.9" Text="SOAP #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="66.15" Top="94.5" Width="179.55" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Top="113.4" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="113.4" Width="179.55" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text8" Top="132.3" Width="66.15" Height="18.9" Text="Status:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text9" Left="66.15" Top="132.3" Width="179.55" Height="18.9" Text="[ds.Name_FilingStatus]" Format="Date" Format.Format="d" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text1" Left="318.9" Width="437.1" Height="28.35" Text="Patient Medical Form" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <PictureObject Name="Picture1" Width="261.75" Height="84.9" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text32" Left="359.1" Top="94.5" Width="122.85" Height="18.9" Text="Owner:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="481.95" Top="94.5" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Client]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text99" Left="0.15" Top="163.35" Width="294.75" Height="18.9" Text="Primary Complaint / History" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text100" Left="0.15" Top="192.15" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.History]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text101" Left="359.1" Top="113.4" Width="122.85" Height="18.9" Text="Patient:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text102" Left="481.95" Top="113.4" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Patient]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text103" Top="292.95" Width="360.9" Height="18.9" Text="Clinical Examination" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text104" Top="321.75" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.ClinicalExamination]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text105" Top="557.55" Width="360.9" Height="18.9" Text="Plan" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text106" Top="586.35" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.Planning]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text107" Top="689.85" Width="181.35" Height="18.9" Text="Diagnosis" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text108" Top="718.65" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.Diagnosis]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text109" Top="822.15" Width="181.35" Height="18.9" Text="Treatment" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text110" Top="850.95" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.Treatment]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text111" Left="349.65" Top="28.35" Width="406.35" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text112" Top="954.45" Width="181.35" Height="18.9" Text="Prescription" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text113" Top="983.25" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.Prescription]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text114" Top="1086.75" Width="181.35" Height="18.9" Text="Client Communication" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text115" Top="1115.55" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.ClientCommunication]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text116" Top="1219.05" Width="181.35" Height="18.9" Visible="false" Text="Subjective" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text117" Top="1247.85" Width="757.05" Height="92.85" Visible="false" Border.Lines="All" CanGrow="true" Text="[ds.Subjective]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text118" Left="292.95" Top="47.25" Width="463.05" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text119" Top="425.25" Width="360.9" Height="18.9" Text="Laboratory Remarks / Interpretation" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text120" Top="454.05" Width="757.05" Height="92.85" Border.Lines="All" CanGrow="true" Text="[ds.LaboratoryRemarks]" Padding="7, 7, 7, 7" Font="Calibri, 12pt" TextRenderType="HtmlParagraph"/>
+      <DataBand Name="Data1" Top="1373.05" Width="756" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzPatientSOAP"/>
+      <GroupFooterBand Name="GroupFooter1" Top="1377.05" Width="756" Height="83.55" CanBreak="true" PrintOnBottom="true">
+        <TextObject Name="Text31" Left="454.65" Top="54.75" Width="292.95" Height="18.9" Border.Lines="Top" Text="Created By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text98" Left="454.65" Top="35.85" Width="292.95" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_CreatedBy]" HorzAlign="Center" Font="Calibri, 12pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="1464.6" Width="756" Height="28.65">
+      <TextObject Name="Text12" Left="9.75" Top="6.3" Width="727.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text5" Left="547.2" Top="9.45" Width="201.6" Height="19.2" Text="[Page#] of [TotalPages#]" HorzAlign="Right" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

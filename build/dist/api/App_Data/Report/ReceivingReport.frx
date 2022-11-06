@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="01/26/2021 18:41:13" ReportInfo.CreatorVersion="2021.1.0.0">
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZvqr7h6VNwLpmawT2F/9cgQ==">
+      <TableDataSource Name="vzReceivingReportReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzReceivingReportReport">
+        <Column Name="Amount" DataType="System.Decimal"/>
+        <Column Name="ApprovedBy_Name_User" DataType="System.String"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Code_PurchaseOrder" DataType="System.String"/>
+        <Column Name="CreatedBy_Name_User" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="DateApproved" DataType="System.DateTime"/>
+        <Column Name="GrossAmount" DataType="System.Decimal"/>
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="ID_ReceivingReport_Detail" DataType="System.Int32"/>
+        <Column Name="ID_Supplier" DataType="System.Int32"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="Name_Supplier" DataType="System.String"/>
+        <Column Name="Name_TaxScheme" DataType="System.String"/>
+        <Column Name="NetAmount" DataType="System.Decimal"/>
+        <Column Name="Quantity" DataType="System.Int32"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+        <Column Name="VatAmount" DataType="System.Decimal"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GroupHeader1" Width="718.2" Height="189" Condition="[ds.ID]">
+      <TextObject Name="Text4" Left="434.7" Top="94.5" Width="113.4" Height="18.9" Text="Supplier:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="18.9" Top="75.6" Width="47.25" Height="18.9" Text="RR #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="66.15" Top="75.6" Width="189" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text5" Left="548.1" Top="94.5" Width="160.65" Height="37.8" Text="[ds.Name_Supplier]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Top="94.5" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="94.5" Width="189" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text8" Top="113.4" Width="66.15" Height="18.9" Text="Status:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text9" Left="66.15" Top="113.4" Width="189" Height="18.9" Text="[ds.Name_FilingStatus]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text17" Left="576.45" Top="160.65" Width="132.3" Height="18.9" Border.Lines="All" Text="Amount" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text14" Left="9.45" Top="160.65" Width="302.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Item" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text15" Left="311.85" Top="160.65" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Quantity" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text16" Left="425.25" Top="160.65" Width="151.2" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Unit Price" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="491.4" Width="217.35" Height="28.35" Text="RECEIVING REPORT" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text32" Left="444.15" Top="75.6" Width="103.95" Height="18.9" Text="Ref PO #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="548.1" Top="75.6" Width="160.65" Height="18.9" Text="[ds.Code_PurchaseOrder]" Font="Calibri, 12pt"/>
+      <PictureObject Name="Picture1" Width="290.1" Height="66" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text34" Left="292.95" Top="28.35" Width="415.8" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="193" Width="718.2" Height="28.35" Style="Header" EvenStyle="EvenRows" DataSource="vzReceivingReportReport">
+        <TextObject Name="Text18" Left="576.45" Width="132.3" Height="18.9" Text="[ds.Amount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text19" Left="9.45" Width="302.4" Height="18.9" Text="[ds.Name_Item]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text20" Left="311.85" Width="113.4" Height="18.9" Text="[ds.Quantity]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text21" Left="425.25" Width="151.2" Height="18.9" Text="[ds.UnitPrice]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Calibri, 12pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="225.35" Width="718.2" Height="368.55" CanBreak="true" PrintOnBottom="true">
+        <TextObject Name="Text22" Left="444.15" Top="18.9" Width="132.3" Height="18.9" Text="Gross Amount:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+        <TextObject Name="Text24" Left="264.6" Top="37.8" Width="311.85" Height="18.9" Text="VAT Amount ([ds.Name_TaxScheme]):" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+        <TextObject Name="Text26" Left="444.15" Top="56.7" Width="132.3" Height="18.9" Text="Net Amount:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+        <TextObject Name="Text27" Left="576.45" Top="18.9" Width="132.3" Height="18.9" Text="[ds.GrossAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Calibri, 12pt"/>
+        <TextObject Name="Text28" Left="576.45" Top="37.8" Width="132.3" Height="18.9" Text="[ds.VatAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Calibri, 12pt"/>
+        <TextObject Name="Text29" Left="576.45" Top="56.7" Width="132.3" Height="18.9" Text="[ds.NetAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Calibri, 12pt"/>
+        <LineObject Name="Line1" Left="9.45" Top="9.45" Width="699.3" Diagonal="true"/>
+        <TextObject Name="Text30" Left="18.9" Top="226.8" Width="302.4" Height="18.9" Border.Lines="Top" Text="Created By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text31" Left="387.45" Top="226.8" Width="292.95" Height="18.9" Border.Lines="Top" Text="Approved By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text10" Left="387.45" Top="207.9" Width="292.95" Height="18.9" Text="[ds.ApprovedBy_Name_User]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text11" Left="18.9" Top="207.9" Width="302.4" Height="18.9" Text="[ds.CreatedBy_Name_User]" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text12" Left="-9.45" Top="349.65" Width="727.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="10/17/2022 19:28:09" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {    
+    private void GroupFooter1_BeforeLayout(object sender, EventArgs e)
+    {
+      
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFISJFRFc8XMqyhLEUUPdpvHqDxB5OfIG9tLojnrWdUR+ZijkFrfrjcXxKu8+noPz05TLyXKtGx2R6qR1ciZ8Q4EZt5CpyGfl19IOAE7GMckZyIcpbqcGnLikKF3enM6WXuz+5yW7olgyk8TpckRCifw==">
+      <TableDataSource Name="vzInventoryDetailReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzInventoryDetailReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="IsActive" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="Comment" DataType="System.String"/>
+        <Column Name="DateCreated" DataType="System.DateTime"/>
+        <Column Name="DateModified" DataType="System.DateTime"/>
+        <Column Name="ID_CreatedBy" DataType="System.Int32"/>
+        <Column Name="ID_LastModifiedBy" DataType="System.Int32"/>
+        <Column Name="ID_Item" DataType="System.Int32"/>
+        <Column Name="Quantity" DataType="System.Int32"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+        <Column Name="ID_FilingStatus" DataType="System.Int32"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="DateExpired" DataType="System.DateTime"/>
+        <Column Name="BatchNo" DataType="System.Int32"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="DateString" DataType="System.String"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="Name_InventoryStatus" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="tempID" DataType="System.String"/>
+        <Column Name="DateTrail" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="TotalQuantity" Expression="[ds.Quantity]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GroupHeader2" Width="718.2" Height="114" Condition="[ds.ID_Company]">
+      <PictureObject Name="Picture1" Width="242.85" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text1" Left="327.75" Width="390.45" Height="28.35" Text="INVENTORY DETAIL REPORT" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text32" Left="302.4" Top="28.35" Width="415.8" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="334.35" Top="85.65" Width="390.45" Height="28.35" Text="as of [Date]" HorzAlign="Right" Font="Calibri, 10pt" TextRenderType="HtmlTags"/>
+      <TextObject Name="Text35" Left="255.15" Top="47.25" Width="463.05" Height="37.8" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <GroupHeaderBand Name="GroupHeader1" Top="119.33" Width="718.2" Height="85.05" Style="Group" Condition="[ds.ID_Item]">
+        <TextObject Name="Text2" Left="48.3" Top="19.05" Width="589.35" Height="19.2" Text="[ds.Name_Item] - [ds.Name_InventoryStatus]" Font="Calibri, 12pt"/>
+        <TextObject Name="Text30" Left="0.15" Top="19.05" Width="57.6" Height="19.2" Text="Item:" Font="Calibri, 12pt, style=Bold"/>
+        <TableObject Name="Table2" Left="18.9" Top="66.15" Width="680.4" Height="18.9" Border.Lines="All">
+          <TableColumn Name="Column6" Width="124.74"/>
+          <TableColumn Name="Column7" Width="134.19"/>
+          <TableColumn Name="Column8" Width="105.84"/>
+          <TableColumn Name="Column9" Width="200.34"/>
+          <TableColumn Name="Column10" Width="115.29"/>
+          <TableRow Name="Row2">
+            <TableCell Name="Cell6" Border.Lines="All" Text="Document #" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell7" Border.Lines="All" Text="Date" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell8" Border.Lines="All" Text="Status" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell9" Border.Lines="All" Text="Note&#13;&#10;" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+            <TableCell Name="Cell10" Border.Lines="All" Text="Quantity" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          </TableRow>
+        </TableObject>
+        <DataBand Name="Data1" Top="209.72" Width="718.2" Height="18.9" CanGrow="true" Style="Header" DataSource="vzInventoryDetailReport">
+          <TableObject Name="Table1" Left="18.9" Width="680.4" Height="18.9">
+            <TableColumn Name="Column1" Width="124.74"/>
+            <TableColumn Name="Column2" Width="134.19"/>
+            <TableColumn Name="Column3" Width="105.84"/>
+            <TableColumn Name="Column4" Width="200.34"/>
+            <TableColumn Name="Column5" Width="115.29"/>
+            <TableRow Name="Row1" AutoSize="true">
+              <TableCell Name="Cell1" Text="[ds.Code]" HorzAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell2" Text="[ds.Date]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell3" Text="[ds.Name_FilingStatus]" HorzAlign="Center" Font="Arial, 10pt"/>
+              <TableCell Name="Cell4" Text="[ds.Comment]" Font="Arial, 10pt"/>
+              <TableCell Name="Cell5" Text="[ds.Quantity]" HorzAlign="Center" Font="Arial, 10pt"/>
+            </TableRow>
+          </TableObject>
+          <Sort>
+            <Sort Expression="[ds.DateTrail]" Descending="true"/>
+            <Sort Expression="[ds.DateCreated]" Descending="true"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter1" Top="233.95" Width="718.2" Height="38.4" BeforeLayoutEvent="GroupFooter1_BeforeLayout">
+          <LineObject Name="Line1" Left="19.05" Width="672.45" Diagonal="true"/>
+          <TextObject Name="Text5" Left="576.3" Width="124.65" Height="19.2" Text="[TotalQuantity]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" WordWrap="false" Font="Calibri, 12pt"/>
+          <TextObject Name="Text31" Left="394.35" Width="181.95" Height="19.2" Text="Remaining Qty:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter2" Top="277.68" Width="718.2" Height="37.8"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="320.82" Width="718.2" Height="22.95">
+      <TextObject Name="Text12" Left="9.75" Top="4.05" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

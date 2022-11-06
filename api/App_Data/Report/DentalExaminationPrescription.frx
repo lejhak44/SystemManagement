@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" StartReportEvent="_StartReport" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="01/26/2021 18:31:29" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;                              using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZtqzk0MqKuqEXJnX3ageC6A==">
+      <TableDataSource Name="vzDentalExaminatonPrescriptionReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzDentalExaminatonPrescriptionReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name_Patient" DataType="System.String"/>
+        <Column Name="Name_Doctor" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="Name_FilingStatus" DataType="System.String"/>
+        <Column Name="Comment" DataType="System.String"/>
+        <Column Name="ApprovedBy_Name_User" DataType="System.String"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GH_ID" Width="756" Height="737.1" BeforePrintEvent="GH_ID_BeforePrint" AfterPrintEvent="GH_ID_AfterPrint" Guides="326.4" Condition="[ds.ID]">
+      <TextObject Name="Text2" Left="-18.9" Top="75.6" Width="85.05" Height="18.9" Text="DEM #:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text3" Left="66.15" Top="75.6" Width="179.55" Height="18.9" Text="[ds.Code]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text6" Top="94.5" Width="66.15" Height="18.9" Text="Date:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text7" Left="66.15" Top="94.5" Width="179.55" Height="18.9" Text="[ds.Date]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text8" Top="113.4" Width="66.15" Height="18.9" Text="Status:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text9" Left="66.15" Top="113.4" Width="179.55" Height="18.9" Text="[ds.Name_FilingStatus]" Format="Date" Format.Format="d" Font="Calibri, 12pt"/>
+      <TextObject Name="Text1" Left="318.9" Width="437.1" Height="28.35" Text="Dental Examination Prescription" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text32" Left="359.1" Top="75.6" Width="122.85" Height="18.9" Text="Patient:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text33" Left="481.95" Top="75.6" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Patient]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text96" Left="378" Top="94.5" Width="103.95" Height="18.9" Text="Dentist:" HorzAlign="Right" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text97" Left="481.95" Top="94.5" Width="274.05" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.Name_Doctor]" Font="Calibri, 12pt"/>
+      <TextObject Name="Text99" Left="9.6" Top="172.8" Width="181.35" Height="18.9" Text="Prescription" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text100" Left="9.6" Top="201.6" Width="738.15" Height="518.1" Text="[ds.Comment]" Font="Calibri, 12pt"/>
+      <PictureObject Name="Picture1" Width="290.1" Height="66" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text101" Left="292.95" Top="28.35" Width="463.05" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="741.1" Width="756" Height="19.2" CanGrow="true" Style="Header" EvenStyle="EvenRows" DataSource="vzDentalExaminatonPrescriptionReport"/>
+      <GroupFooterBand Name="GroupFooter1" Top="764.3" Width="756" Height="83.55" CanBreak="true" PrintOnBottom="true">
+        <TextObject Name="Text31" Left="454.65" Top="35.85" Width="292.95" Height="18.9" Border.Lines="Top" Text="Approved By" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text98" Left="454.65" Top="16.95" Width="292.95" Height="18.9" CanGrow="true" CanBreak="false" Text="[ds.ApprovedBy_Name_User]" HorzAlign="Center" Font="Calibri, 12pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="851.85" Width="756" Height="19.2">
+      <TextObject Name="Text12" Left="9.75" Top="-3.15" Width="727.65" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+      <TextObject Name="Text5" Left="547.2" Width="201.6" Height="19.2" Text="[Page#] of [TotalPages#]" HorzAlign="Right" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
