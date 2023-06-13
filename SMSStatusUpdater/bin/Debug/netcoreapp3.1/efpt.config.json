@@ -1,0 +1,954 @@
+﻿{
+   "ContextClassName": "DBContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "DoNotCombineNamespace": false,
+   "IdReplace": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "ClientApp\/src\/app",
+   "ProjectRootNamespace": "ngJSApp",
+   "SelectedHandlebarsLanguage": 1,
+   "SelectedToBeGenerated": 2,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[__vNavigation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tColumnAlignment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tControlType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tDetailView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tDetailView_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tDetailView_Detail_Link]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tLabelLocation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tListView_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tModel]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tModel_Property]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tNavigation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tPropertyType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tSummaryType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_tViewType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vDetailView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vListView_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vModel]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vModel_Property]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vModelDetailView_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vModelPropertiesCrud]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vModelProperyDetail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vNavigation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vSetting]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[_vUserDefinedTypes]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tApproverMatrix]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tApproverMatrix_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tAppSetting]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tAuditTrail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tAuditTrail_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tAuditTrailType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tBank]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tBankAccount]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tBusinessPartner]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tBusinessPartnerContact]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCanvassSheet]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCanvassSheet_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCanvassSheet_Detail_Supplier]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCashAdvance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tChartOfAccount]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCollection]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCollection_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_IssueTracker]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_JobOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_JobOrder_Comment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_JobOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_Project]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCRM_Status]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tCurrency]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDeliveryReceipt]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDeliveryReceipt_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDeliveryReceipt_Detail_Serial]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDepartment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDoc]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDoc_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDocumentSeries]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tDocumentStatus]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tEmployee]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tEmployeePosition]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tEmployeeStatus]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tFileAttachment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tFileAttachment_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tFilingStatus]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tInventoryAdjustment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tInventoryAdjustment_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tInventoryHistory]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItem]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItem_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemAssembly]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemAssembly_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemBrand]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemCategory]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemIssuance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemIssuance_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemReturn]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemReturn_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemTransfer]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemTransfer_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tItemType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tJournalVoucher]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tLiquidation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tOpeningBalance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tOpeningBalance_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tOpportunity]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tOpportunity_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPaymentTerm]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPaymentVoucher]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPaymentVoucher_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPettyCashCustodian]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPosition]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tProject]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tProject_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tProposal]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tProposal_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseReceipt]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseReceipt_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseRequest]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tPurchaseRequest_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tReceivingReport]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tReceivingReport_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tReceivingReport_Detail_Serial]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesEndorsement]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesEndorsement_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesInvoice]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesInvoice_Collections]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesInvoice_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesOrder_Payment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSalesOrderType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tSetting]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tStage]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tStockAllocation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tStockAllocation_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tTaxRate]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tTaxScheme]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tTicketing]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tTicketing_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tTransactionType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUnitOfMeasure]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUser]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUser_Favorite]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUserComment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUserGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUserRole]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tUserSession]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tVouchersPayable]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tVouchersPayable_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tWarehouse]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tWorkOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tWorkOrderActionTaken]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[tWorkOrderType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vApproverMatrix]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vApproverMatrix_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vAppSetting]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vAuditTrail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vBank]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vBankAccount]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vBusinessPartnerContact]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCanvassSheet]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCanvassSheet_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCashAdvance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vChartOfAccount]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCollection]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCRM_IssueTracker]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCRM_JobOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCRM_JobOrder_Comment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCRM_JobOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCRM_Project]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vCurrency]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDeliveryReceipt]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDeliveryReceipt_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDeliveryReceipt_Detail_Lookup_ListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDepartment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDetailView_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDetailView_Detail_Link]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDoc]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDoc_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vDocumentSeries]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vEmployee]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vEmployeePosition]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vFileAttachment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vInventoryAdjustment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vInventoryAdjustment_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItem]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemAssembly]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemAssembly_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemBrand]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemCategory]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemIssuance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemIssuance_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemReturn]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemReturn_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemTransfer]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemTransfer_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vItemType]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vJournalVoucher]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vLiquidation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vModel_Property]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vOpeningBalance]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vOpeningBalance_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vOpportunity]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vOpportunity_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPaymentVoucher]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPettyCashCustodian]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPosition]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vProject]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vProject_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vProposal]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vProposal_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseOrder_Detail_Lookup_ListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseReceipt]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseReceipt_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseRequest]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vPurchaseRequest_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vReceivingReport]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vReceivingReport_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesEndorsement]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesEndorsement_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesInvoice]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesInvoice_Collections]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesInvoice_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesInvoice_Lookup_ListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder_Detail_Lookup_ListView]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder_Detail_Lookup_ListView__SI]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder_Payments]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vSalesOrder_to_SalesInvoice]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vStage]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vStockAllocation]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vStockAllocation_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vTicketing]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vUnitOfMeasure]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vUser]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vUserComment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vUserGroup]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vUserRole]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vVouchersPayable]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vVouchersPayable_Detail]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vWarehouse]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vWorkOrder]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vWorkOrderActionTaken]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[vWorkOrderType]"
+      }
+   ],
+   "UseDatabaseNames": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": true,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseSpatial": false
+}

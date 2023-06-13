@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="04/26/2021 15:11:29" ReportInfo.CreatorVersion="2021.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZu4EKZltpl9r3ILOvOtum0Q==">
+      <TableDataSource Name="vzInventorySummaryReport" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzInventorySummaryReport">
+        <Column Name="ID" DataType="System.Int32"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="TotalQuantity" DataType="System.Int32"/>
+        <Column Name="DateExpired" DataType="System.DateTime"/>
+        <Column Name="BatchNo" DataType="System.Int32"/>
+        <Column Name="DateLastIn" DataType="System.DateTime"/>
+        <Column Name="DateLastOut" DataType="System.DateTime"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+        <Column Name="RemainingBeforeExpired" DataType="System.String"/>
+        <Column Name="RemainingDays" DataType="System.Int32"/>
+        <Column Name="Name_InventoryStatus" DataType="System.String"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="UnitCost" DataType="System.Decimal"/>
+        <Column Name="UnitPrice" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <GroupHeaderBand Name="GroupHeader1" Width="718.2" Height="141.75" Condition="[ds.ID_Company]">
+      <TextObject Name="Text14" Top="122.85" Width="245.7" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Item" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text23" Left="302.4" Top="28.35" Width="406.35" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <PictureObject Name="Picture1" Width="271.2" Height="84.9" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text1" Left="318.3" Width="390.45" Height="28.35" Text="INVENTORY SUMMARY REPORT" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="Text22" Left="274.05" Top="85.65" Width="434.7" Height="18.9" Text="as of [Date]" HorzAlign="Right" Font="Calibri, 10pt"/>
+      <TextObject Name="Text27" Left="274.05" Top="47.25" Width="434.7" Height="37.8" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+      <TextObject Name="Text28" Left="245.7" Top="122.85" Width="103.95" Height="18.9" Border.Lines="All" Text="Buying Price" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text30" Left="349.65" Top="122.85" Width="103.95" Height="18.9" Border.Lines="All" Text="Selling Price" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text15" Left="453.6" Top="122.85" Width="122.85" Height="18.9" Border.Lines="All" Text="Quantity" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <TextObject Name="Text31" Left="576.45" Top="122.85" Width="132.3" Height="18.9" Border.Lines="All" Text="Status" HorzAlign="Center" Font="Calibri, 12pt, style=Bold"/>
+      <DataBand Name="Data1" Top="145.75" Width="718.2" Height="28.73" Style="Header" EvenStyle="EvenRows" DataSource="vzInventorySummaryReport">
+        <TextObject Name="Text19" Width="245.7" Height="18.9" Text="[ds.Name_Item] [ds.RemainingBeforeExpired]" Font="Calibri, 12pt"/>
+        <TextObject Name="Text25" Left="576.45" Width="132.3" Height="18.9" Text="[ds.Name_InventoryStatus]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text29" Left="349.65" Width="103.95" Height="18.9" Text="[ds.UnitPrice]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+        <TextObject Name="Text20" Left="453.6" Width="122.85" Height="18.9" Text="[ds.TotalQuantity]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" Font="Calibri, 12pt"/>
+        <TextObject Name="Text32" Left="245.7" Width="103.95" Height="18.9" Text="[ds.UnitCost]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Calibri, 12pt"/>
+        <Sort>
+          <Sort Expression="[ds.Name_Item]"/>
+        </Sort>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="178.48" Width="718.2" Height="37.8">
+        <TextObject Name="Text33" Top="9.45" Width="708.75" Height="18.9" Text="Buying and Selling Price comes from update Item information as of [Date]." HorzAlign="Center" Font="Arial, 8pt"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="220.28" Width="718.2" Height="22.95">
+      <TextObject Name="Text12" Left="9.75" Top="4.05" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

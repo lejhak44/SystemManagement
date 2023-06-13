@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/07/2020 17:26:16" ReportInfo.Modified="09/15/2022 17:00:14" ReportInfo.CreatorVersion="2021.4.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    int _ID_BillingInvoice = 0;         
+    decimal _totalDiscountAmount = 0;                                              
+    Dictionary&lt;int, decimal&gt; dictDiscountAmount = new Dictionary&lt;int, decimal&gt;();
+    Dictionary&lt;int, decimal&gt; dictConfinementDepositAmount = new Dictionary&lt;int, decimal&gt;();
+
+    private void Text16_BeforePrint(object sender, EventArgs e)
+    {
+      int ID_BillingInvoice = (int) Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;);
+      
+      if (dictDiscountAmount.ContainsKey(ID_BillingInvoice) != true)
+      {                                                                                                  
+        dictDiscountAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.DiscountAmount&quot;));
+        dictConfinementDepositAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.ConfinementDepositAmount&quot;));
+      }
+    }
+
+    private void txtDiscountAmount_BeforePrint(object sender, EventArgs e)
+    {
+      decimal discount = 0;
+      
+      foreach (var obj in dictDiscountAmount) {  
+      
+        discount += obj.Value;
+      }
+      
+      discount = discount + (decimal) Report.GetTotalValue(&quot;TotalDiscountAmountDetail&quot;);
+      
+      txtDiscountAmount.Text =  &quot;(&quot; + discount.ToString(&quot;#,#0.00&quot;) + &quot;)&quot;;
+    }
+
+    private void txtGrandTotal_BeforePrint(object sender, EventArgs e)
+    {
+      
+      decimal discount = 0;    
+      decimal confinementDepositAmount = 0;
+      
+      foreach (var obj in dictDiscountAmount) {  
+      
+        discount += obj.Value;                                           
+      }
+      
+      discount = discount + (decimal) Report.GetTotalValue(&quot;TotalDiscountAmountDetail&quot;);
+           
+      foreach (var obj in dictConfinementDepositAmount) {  
+      
+        confinementDepositAmount += obj.Value;                                           
+      }
+                    
+      decimal grandTotal = (decimal) Report.GetTotalValue(&quot;GrandTotal&quot;);         
+      decimal total = grandTotal - discount - confinementDepositAmount;
+      
+      txtGrandTotal.Text = total.ToString(&quot;#,#0.00&quot;);
+    }
+
+    private void txtConfinementDepositAmount_BeforePrint(object sender, EventArgs e)
+    {
+      decimal confinementDepositAmount = 0;
+      
+      foreach (var obj in dictConfinementDepositAmount) {  
+      
+        confinementDepositAmount += obj.Value;
+        txtConfinementDepositAmount.Text =  &quot;(&quot; + confinementDepositAmount.ToString(&quot;#,#0.00&quot;) + &quot;)&quot;;
+      }
+    }
+
+    private void Text16_AfterData(object sender, EventArgs e)
+    {
+      int ID_BillingInvoice = (int) Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;);
+      
+      if (dictDiscountAmount.ContainsKey(ID_BillingInvoice) != true)
+      {                                                                                                  
+        dictDiscountAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.DiscountAmount&quot;));
+        dictConfinementDepositAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.ConfinementDepositAmount&quot;));
+      }
+
+    }
+
+    private void Text16_AfterPrint(object sender, EventArgs e)
+    {
+
+
+    }
+
+    private void GroupFooter1_BeforePrint(object sender, EventArgs e)
+    {
+
+    }
+
+    private void GroupHeader2_BeforePrint(object sender, EventArgs e)
+    {
+  
+    }
+
+    private void GroupHeader1_BeforePrint(object sender, EventArgs e)
+    {
+      
+    }
+
+    private void Text36_BeforePrint(object sender, EventArgs e)
+    {
+      int ID_BillingInvoice = (int) Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;);
+      
+      if (dictDiscountAmount.ContainsKey(ID_BillingInvoice) != true)
+      {                                                                                                  
+        dictDiscountAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.DiscountAmount&quot;));
+        dictConfinementDepositAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.ConfinementDepositAmount&quot;));
+      }
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVF1TuYwNjSg6hkN4wKX7oYbzS3nZ1hqVvPMToGHRqhdzDBaUDw57R88OeDbT+ijm7SbBcZWcuwXw3jEdZCQ244JS/H8EwN8CyKTpa2Fq2KBiTefAIlmkTIh03E6YruyLbKcfNnnnu+vfBye4s4z48m6Q==">
+      <TableDataSource Name="vzPOSSummary" Alias="ds" DataType="System.Int32" Enabled="true" TableName="vzPOSSummary" SelectCommand="&#13;&#10;&#13;&#10;SELECT ID_Item,&#13;&#10;       LTRIM(RTRIM(Name_Item))   Name_Item,&#13;&#10;       ID_ItemType,&#13;&#10;       Name_ItemType,&#13;&#10;       SUM(Quantity)             TotalQuantity,&#13;&#10;       SUM(GrossAmount)          TotalGrossAmount,&#13;&#10;       SUM(DiscountAmountDetail) DiscountAmountDetail,&#13;&#10;       SUM(Amount)               TotalAmount,&#13;&#10;       MIN(Date)                 DateMin,&#13;&#10;       MAX(Date)                 DateMax,&#13;&#10;       ID_BillingInvoice,&#13;&#10;       DiscountAmount,&#13;&#10;       ConfinementDepositAmount,&#13;&#10;       ID_Company,&#13;&#10;       Name_Company,&#13;&#10;       ImageLogoLocationFilenamePath,&#13;&#10;       HeaderInfo_Company,&#13;&#10;       AttendingPhysician_ID_Employee,&#13;&#10;       AttendingPhysician_Name_Employee&#13;&#10;FROM   dbo.vzPOSSummary&#13;&#10;/*@WHERE*/  /*@ID_Company_QPARAM*/ /*@Date_QPARAM*/ /*@Date1_QPARAM*/ /*@ID_ItemType_QPARAM*/ /*@Name_Item_QPARAM*/&#13;&#10;GROUP  BY ID_Item,&#13;&#10;          Name_Item,&#13;&#10;          ID_ItemType,&#13;&#10;          Name_ItemType,&#13;&#10;          DiscountAmount,&#13;&#10;          ConfinementDepositAmount,&#13;&#10;          ID_BillingInvoice,&#13;&#10;          ID_Company,&#13;&#10;          Name_Company,&#13;&#10;          ImageLogoLocationFilenamePath,&#13;&#10;          HeaderInfo_Company,&#13;&#10;          AttendingPhysician_ID_Employee,&#13;&#10;          AttendingPhysician_Name_Employee&#13;&#10;ORDER  BY ID_Item;">
+        <Column Name="ID_Item" DataType="System.Int32"/>
+        <Column Name="Name_Item" DataType="System.String"/>
+        <Column Name="TotalAmount" DataType="System.Decimal"/>
+        <Column Name="ID_ItemType" DataType="System.Int32"/>
+        <Column Name="Name_ItemType" DataType="System.String"/>
+        <Column Name="DateMin" DataType="System.DateTime"/>
+        <Column Name="DateMax" DataType="System.DateTime"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="TotalQuantity" DataType="System.Int32"/>
+        <Column Name="ID_BillingInvoice" DataType="System.Int32"/>
+        <Column Name="DiscountAmount" DataType="System.Decimal"/>
+        <Column Name="HeaderInfo_Company" DataType="System.String"/>
+        <Column Name="ConfinementDepositAmount" DataType="System.Decimal"/>
+        <Column Name="AttendingPhysician_ID_Employee" DataType="System.Int32"/>
+        <Column Name="AttendingPhysician_Name_Employee" DataType="System.String"/>
+        <Column Name="TotalGrossAmount" DataType="System.Decimal"/>
+        <Column Name="DiscountAmountDetail" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Total Name="Total" Expression="[ds.TotalAmount]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="GrandTotal" Expression="[ds.TotalGrossAmount]" Evaluator="Data1" ResetAfterPrint="false" ResetOnReprint="true"/>
+    <Total Name="TotalQty" Expression="[ds.TotalQuantity]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+    <Total Name="TotalAmountPerItemType" Expression="[ds.TotalGrossAmount]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TotalDiscountAmountDetail" Expression="[ds.DiscountAmountDetail]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="TotalGrossAmountPerNameItem" Expression="[ds.TotalGrossAmount]" Evaluator="Data1" PrintOn="GroupFooter2"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="112.05" CanGrow="true">
+      <TextObject Name="Text1" Left="318.3" Top="9.45" Width="390.45" Height="28.35" Text="Invoice Items And Services" HorzAlign="Right" Font="Calibri, 16pt, style=Bold"/>
+      <TextObject Name="txtHeader_CustomCaption" Left="311.85" Top="85.05" Width="396.9" Height="18.9" HorzAlign="Right" Font="Arial, 9pt"/>
+      <PictureObject Name="Picture1" Left="9.45" Top="9.45" Width="299.55" Height="75.45" DataColumn="ds.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+      <TextObject Name="Text27" Left="311.85" Top="37.8" Width="396.9" Height="18.9" Text="[ds.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text33" Left="311.85" Top="56.7" Width="396.9" Height="18.9" CanGrow="true" Text="[ds.HeaderInfo_Company]" HorzAlign="Right" Font="Arial, 9pt" TextRenderType="HtmlParagraph"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader2" Top="116.05" Width="718.2" Height="56.7" BeforePrintEvent="GroupHeader2_BeforePrint" Condition="[ds.Name_ItemType]">
+      <TextObject Name="Text2" Left="9.45" Width="255.15" Height="18.9" Text="Type: [[ds.Name_ItemType]]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text21" Left="9.45" Top="37.8" Width="500.85" Height="18.9" Border.Lines="Bottom" Text="Item" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text22" Left="585.9" Top="37.8" Width="122.85" Height="18.9" Border.Lines="Bottom" Text="Amount" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text28" Left="510.3" Top="37.8" Width="75.6" Height="18.9" Border.Lines="Bottom" Text="Qty" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <GroupHeaderBand Name="GroupHeader1" Top="176.75" Width="718.2" BeforePrintEvent="GroupHeader1_BeforePrint" Condition="[ds.Name_Item]">
+        <DataBand Name="Data1" Top="180.75" Width="718.2" Height="0.38" Style="Footer" EvenStyle="EvenRows" DataSource="vzPOSSummary">
+          <TextObject Name="Text36" Width="94.5" Height="0.38" BeforePrintEvent="Text36_BeforePrint" Font="Arial, 10pt"/>
+          <Sort>
+            <Sort Expression="[ds.Name_Item]"/>
+          </Sort>
+        </DataBand>
+        <GroupFooterBand Name="GroupFooter2" Top="185.13" Width="718.2" Height="26.46" CanGrow="true">
+          <TextObject Name="Text16" Left="9.45" Top="3.78" Width="500.85" Height="18.9" CanGrow="true" BeforePrintEvent="Text16_BeforePrint" AfterPrintEvent="Text16_AfterPrint" AfterDataEvent="Text16_AfterData" Text="[[ds.Name_Item]]" Font="Arial, 10pt"/>
+          <TextObject Name="Text29" Left="510.3" Top="3.78" Width="75.6" Height="18.9" Text="[TotalQty]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+          <TextObject Name="Text17" Left="585.9" Top="3.78" Width="122.85" Height="18.9" Text="[TotalGrossAmountPerNameItem]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+        </GroupFooterBand>
+      </GroupHeaderBand>
+      <GroupFooterBand Name="GroupFooter1" Top="215.59" Width="718.2" Height="37.8" BeforePrintEvent="GroupFooter1_BeforePrint" KeepWithData="true">
+        <TextObject Name="Text23" Left="585.9" Top="9.45" Width="122.85" Height="18.9" Text="[TotalAmountPerItemType]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 10pt"/>
+        <LineObject Name="Line2" Left="9.45" Width="699.3"/>
+        <TextObject Name="Text24" Left="302.4" Top="9.45" Width="283.5" Height="18.9" Text="TOTAL:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="257.39" Width="718.2" Height="94.5">
+      <TextObject Name="Text25" Left="585.9" Width="122.85" Height="18.9" Text="[GrandTotal]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text20" Left="302.4" Width="283.5" Height="18.9" Text="SUBTOTAL:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="txtDiscountAmount" Left="585.9" Top="18.9" Width="122.85" Height="18.9" BeforePrintEvent="txtDiscountAmount_BeforePrint" Text="      int ID_BillingInvoice = (int) Report.GetColumnValue(&quot;ds.ID_BillingInvoice&quot;);&#13;&#10;      &#13;&#10;      if (dictDiscountAmount.ContainsKey(ID_BillingInvoice) != true)&#13;&#10;      {                                                                                                  &#13;&#10;        dictDiscountAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.DiscountAmount&quot;));&#13;&#10;        dictConfinementDepositAmount.Add(ID_BillingInvoice, (decimal) Report.GetColumnValue(&quot;ds.ConfinementDepositAmount&quot;));&#13;&#10;      }" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text30" Left="302.4" Top="18.9" Width="283.5" Height="18.9" Text="TOTAL DISCOUNT:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="txtGrandTotal" Left="585.9" Top="56.7" Width="122.85" Height="18.9" Border.Lines="Top" BeforePrintEvent="txtGrandTotal_BeforePrint" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text32" Left="302.4" Top="56.7" Width="283.5" Height="18.9" Border.Lines="Top" Text="GRAND TOTAL:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="txtConfinementDepositAmount" Left="585.9" Top="37.8" Width="122.85" Height="18.9" BeforePrintEvent="txtConfinementDepositAmount_BeforePrint" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text35" Left="85.05" Top="37.8" Width="500.85" Height="18.9" Text="TOTAL CONFIMEMENT DEPOSIT AMOUNT" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="355.89" Width="718.2" Height="32.4">
+      <TextObject Name="Text12" Left="9.75" Top="13.5" Width="698.85" Height="18.9" Text="Print Date: [Date]" Format="Date" Format.Format="F" HorzAlign="Center" Font="Calibri, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

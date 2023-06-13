@@ -1,0 +1,50 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Name_Client",
+			"caption": "Client",
+			"dataType": "string",
+		
+		},		
+		{
+			"name": "Date",
+			"caption": "Date",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		
+		},
+		{
+			"name": "Code",
+			"caption": "Ref #",
+			"dataType": ""
+		},
+		{
+			"name": "Comment",
+			"caption": "Note",
+			"dataType": ""
+		},
+		{
+			"name": "CreditAmount",
+			"caption": "Note",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Name_Client, Date"
+}

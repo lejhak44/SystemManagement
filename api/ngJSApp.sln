@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ngJSApp", "ngJSApp.csproj", "{3576EAAC-F9B2-41C1-A43B-0B643B3A18D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSStatusUpdater", "..\SMSStatusUpdater\SMSStatusUpdater.csproj", "{C427A1FD-9DD8-495E-84ED-820E22BB7B67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3576EAAC-F9B2-41C1-A43B-0B643B3A18D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3576EAAC-F9B2-41C1-A43B-0B643B3A18D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3576EAAC-F9B2-41C1-A43B-0B643B3A18D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C427A1FD-9DD8-495E-84ED-820E22BB7B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C427A1FD-9DD8-495E-84ED-820E22BB7B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C427A1FD-9DD8-495E-84ED-820E22BB7B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C427A1FD-9DD8-495E-84ED-820E22BB7B67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

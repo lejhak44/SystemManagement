@@ -1,0 +1,70 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+		}
+	],
+	"columns": [
+		{
+			"name": "Code_BillingInvoice",
+			"caption": "BI #",
+			"dataType": "string",
+		
+		},
+		{
+			"name": "Date_BillingInvoice",
+			"caption": "BI Date",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		},
+		{
+			"name": "Name_Client",
+			"caption": "Client",
+			"dataType": ""
+		},
+		{
+			"name": "Name_Patient",
+			"caption": "Patient",
+			"dataType": ""
+		},
+		{
+			"name": "Payment_Name_FilingStatus",
+			"caption": "Status",
+			"dataType": ""
+		},
+		{
+			"name": "DiscountAmount",
+			"caption": "Discount Amt",
+			"dataType": ""
+		},
+		{
+			"name": "TotalAmount",
+			"caption": "Total Amount",
+			"dataType": ""
+		},
+		{
+			"name": "PaymentAmount",
+			"caption": "Paid Amount",
+			"dataType": ""
+		},
+		{
+			"name": "LastPaidDate",
+			"caption": "Last Paid Date",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		},
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	"sort": "Date_BillingInvoice, Code_BillingInvoice, Name_Client, Name_Patient"
+}

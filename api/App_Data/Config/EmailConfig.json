@@ -1,0 +1,18 @@
+{
+  "IsForceToCloseApp": false,
+  "IsEnableToSendEmail": true,
+  "MaxTotalSecondstoSendEmail": 3600,
+  "EmailCredential": [
+    {
+      "Server": "jQqWL9Vl7aBEltsznq42E7cN08im7GQj",
+      "UserName": "TLPi0SukCSt17unN7ORRCzcixWsb6Hv+",
+      "Password": "OvoxlrzpfqtESbqJeCSY8Q==",
+      "Port": "njY3EGoesWE=",
+      "EmailFrom": "TLPi0SukCSt17unN7ORRCzcixWsb6Hv+",
+      "EmailTo": "TLPi0SukCSt17unN7ORRCzcixWsb6Hv+"
+    }
+  ],
+  "BlockMacAddresses": [
+    ""
+  ]
+}

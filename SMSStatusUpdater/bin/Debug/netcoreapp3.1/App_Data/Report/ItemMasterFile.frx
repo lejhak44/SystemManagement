@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/21/2020 16:01:53" ReportInfo.Modified="01/29/2021 13:59:43" ReportInfo.CreatorVersion="2021.1.0.0">
+  <Styles Name="Gray">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="Gainsboro" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq+rW0RkboK+/8CKGGYUID3ctBV8q9SvKYxl3iiE7vBnh7Tgou0+4WFf3NfmPSvHVFxql5f4VSMaIya2ivv+NcuEKTewkH41Vw1c7UUY+ALqf/uqEQ9Rz0VK79pM3/XzieqpCcNIO53SXgQRZLUZT4TbVx4+6csWg7WqoUtSbqk7F9AHgMEIqgEmZjALcixrVZlBy0V1N5Bo830cv49HWpYQ==">
+      <TableDataSource Name="vRpt_ItemList" DataType="System.Int32" Enabled="true" TableName="vRpt_ItemList">
+        <Column Name="ID" Enabled="false" DataType="System.Int32"/>
+        <Column Name="Code" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="IsActive" Enabled="false" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="Comment" DataType="System.String"/>
+        <Column Name="DateCreated" DataType="System.DateTime"/>
+        <Column Name="DateModified" DataType="System.Char"/>
+        <Column Name="ID_CreatedBy" Enabled="false" DataType="System.Int32"/>
+        <Column Name="ID_LastModifiedBy" Enabled="false" DataType="System.Int32"/>
+        <Column Name="CreatedBy" DataType="System.String"/>
+        <Column Name="LastModifiedBy" DataType="System.String"/>
+        <Column Name="ID_Company" DataType="System.Int32"/>
+        <Column Name="ImageLogoLocationFilenamePath" DataType="System.String"/>
+        <Column Name="Name_Company" DataType="System.String"/>
+        <Column Name="Address_Company" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="73.24">
+      <TextObject Name="Text1" Left="283.5" Top="17.72" Width="480.06" Height="37.8" Anchor="None" Text="Item Master List Report" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold, Underline"/>
+      <TextObject Name="txtCompanyName" Left="835.38" Top="18.72" Width="207.9" Height="18.9" Text="[vRpt_ItemList.Name_Company]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="txtDateGenerated" Left="835.38" Top="35.62" Width="207.9" Height="18.9" Text="Date Generated" HorzAlign="Right" Font="Arial, 8pt"/>
+      <PictureObject Name="Picture1" Width="290.1" Height="66" DataColumn="vRpt_ItemList.ImageLogoLocationFilenamePath" ImageAlign="Top_Left"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="77.24" Width="1047.06" Height="28.35">
+      <TextObject Name="Text3" Width="151.2" Height="28.35" Fill.Color="Gainsboro" Text="Item Code" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="151.2" Width="302.4" Height="28.35" Fill.Color="Gainsboro" Text="Item Name" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text9" Left="453.6" Width="151.2" Height="28.35" Fill.Color="Gainsboro" Text="Date Created" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text11" Left="604.8" Width="151.2" Height="28.35" Fill.Color="Gainsboro" Text="Date Modified" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text13" Left="756" Width="141.75" Height="28.35" Fill.Color="Gainsboro" Text="Last Modified by" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text15" Left="897.75" Width="141.75" Height="28.35" Fill.Color="Gainsboro" Text="CreatedBy" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="109.59" Width="1047.06" Height="28.35" EvenStyle="EvenRows" DataSource="vRpt_ItemList">
+      <TextObject Name="Text2" Width="151.2" Height="28.35" Text="[vRpt_ItemList.Code]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text4" Left="151.2" Width="302.4" Height="28.35" Text="[vRpt_ItemList.Name]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text8" Left="453.6" Width="151.2" Height="28.35" Text="[vRpt_ItemList.DateCreated]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text10" Left="604.8" Width="151.2" Height="28.35" Text="[vRpt_ItemList.DateModified]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text12" Left="756" Width="141.75" Height="28.35" Text="[vRpt_ItemList.LastModifiedBy]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text14" Left="897.75" Width="141.75" Height="28.35" Text="[vRpt_ItemList.CreatedBy]" VertAlign="Center" Font="Arial, 10pt" Style="Data"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="141.94" Width="1047.06" Height="18.9">
+      <TextObject Name="Text16" Width="1047.06" Height="18.9" Dock="Fill" Fill.Color="Gainsboro" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

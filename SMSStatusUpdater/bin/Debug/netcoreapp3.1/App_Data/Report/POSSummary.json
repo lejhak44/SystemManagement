@@ -1,0 +1,44 @@
+{
+	"Title": "Sales Income Report",
+	"Subtitle": "Sales Income Report",
+	"headerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"format": "YYYY-MM-DD"
+		}
+	],
+	"columns": [
+		{
+			"name": "Name_ItemType",
+			"caption": "Type",
+			"dataType": "string",
+		},
+		{
+			"name": "Name_Item",
+			"caption": "Item / Services",
+			"dataType": "string"
+		},
+		{
+			"name": "TotalQuantity",
+			"caption": "Qty",
+			"dataType": ""
+		},
+		{
+			"name": "TotalAmount",
+			"caption": "Amount",
+			"dataType": ""
+		}
+	],
+	"footerData": [
+		{
+			"name": "Name_Company",
+			"caption": "Clinic",
+			"dataType": "string",
+			"expression": "MAX(Name_Company)"
+		}
+	],
+	
+	"sort": "Name_ItemType, Name_Item"
+}

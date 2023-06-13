@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -107,6 +108,24 @@ namespace JSLibrary
                 functionReturnValue = (new System.Text.UTF8Encoding()).GetString(rpb);
             }
             return functionReturnValue;
+        }
+
+        public static object sendVetCloudSMSAPITextMessage(string vetCloudID)
+        {
+            object functionReturnValue = null;
+            dynamic obj;
+            using (System.Net.WebClient client = new System.Net.WebClient())
+            {
+                System.Collections.Specialized.NameValueCollection parameter = new System.Collections.Specialized.NameValueCollection();
+                string url = "https://textblast.vetcloudsystem.one/api/status.php";
+                parameter.Add("UniqueID", vetCloudID);
+                dynamic rpb = client.UploadValues(url, "POST", parameter);
+
+                functionReturnValue = (new System.Text.UTF8Encoding()).GetString(rpb);
+                obj = JsonConvert.DeserializeObject<dynamic>(functionReturnValue.ToString());
+            }
+
+            return obj;
         }
 
         public static void saveStringToTextFile(string filename, string value) {

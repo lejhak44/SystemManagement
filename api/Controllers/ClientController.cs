@@ -32,7 +32,7 @@ namespace ngJSApp.Controllers
         IAppCrypterService crypter = null;
 
         private readonly IHubContext<ChatHub> _chathubContext;
-        public SMSScheduleController(
+        public ClientController(
             IConfiguration config,
             AppDbContext _ctx,
             IHubContext<ChatHub> chathubContext,
@@ -46,7 +46,7 @@ namespace ngJSApp.Controllers
         }
 
         [AllowAnonymous]
-        [Route("PendingOneDayBeforeAppointment")]
+        [Route("ClientMobileNumberByCompany")]
         [HttpPost]
         public ActionResult ClientMobileNumberByCompany(string Oid_Company)
         {
